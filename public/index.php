@@ -9,21 +9,22 @@
 
 <?php
 require_once __DIR__ . "/../app/controllers/CategoriaController.php";
-require_once __DIR__ . "/../app/controllers/ClienteController.php";
+require_once __DIR__ . '/../app/controllers/ClienteController.php';
 require_once __DIR__ . "/../app/controllers/ProductoController.php";
-require_once __DIR__ . "/../app/controllers/ProveedorController.php";
+require_once __DIR__ . '/../app/controllers/proveedorControllers.php';
 require_once __DIR__ . "/../app/controllers/UsuarioController.php";
 require_once __DIR__ . "/../app/controllers/VentaController.php";
 
 
-$method = $_SERVER['REQUEST_METHOD'];
+
+$method = $_SERVER['REQUEST_METHOD']; 
 $uri = $_SERVER['REQUEST_URI'];
 
 $controllerCategoria = new CategoriaController();
 $controllerCategoria->index();
 
-$controllerCliente = new ClienteController();
-$controllerCliente->index();
+$controller = new ClienteController();
+$controller->index();
 
 $controllerProducto = new ProductoController();
 $controllerProducto->index();
@@ -40,12 +41,12 @@ $ControllerVenta->index();
 
 if ($method === 'GET' && $uri === "/categoria"){
     $categoriaController = new CategoriaController();
-    $CategoriaController->index();
+    $categoriaController->index();
 }
 
 if ($method === 'GET' && $uri === "/cliente"){
-    $ClienteController = new ClienteController();
-    $ClienteController->index();
+    $clienteController = new ClienteController();
+    $clienteController->index();
 }
 
 if ($method === 'GET' && $uri === "/producto"){
@@ -67,6 +68,34 @@ if ($method === 'GET' && $uri === "/Venta"){
     $VentaController = new VentaController();
     $VentaController->index();
 }
+
+require_once "../app/controllers/CategoriaController.php";
+$controller = new CategoriaController();
+$controller->crear();
+
+require_once "../app/controllers/ClienteController.php";
+$controller = new ClienteController();
+$controller->crear();
+
+require_once "../app/controllers/ProductoController.php";
+$controller = new ProductoController();
+$controller->crear();
+
+require_once "../app/controllers/proveedorControllers.php";
+$controller = new ProveedorController();
+$controller->crear();
+
+require_once "../app/controllers/UsuarioController.php";
+$controller = new UsuarioController();
+$controller->crear();
+
+require_once "../app/controllers/VentaController.php";
+$controller = new VentaController();
+$controller->crear();
+
+
+
+
 
 ?>
 

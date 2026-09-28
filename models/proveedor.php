@@ -1,88 +1,35 @@
 <?php
+require_once __DIR__ . "/../config/Database.php";
+
 class Proveedor {
-    private $conn;
-    private $table = "proveedores";
+    private $connection;
 
-    public function __construct($db) {
-        $this->conn = $db;
+    public function __construct()
+    {
+        $database = new Database();
+        $this->connection = $database->connect();
     }
 
-    public function getAll() {
-        try {
-            $query = "SELECT * FROM " . $this->table;
-            $stmt = $this->conn->prepare($query);
-            if ($stmt->execute()) {
-                return $stmt->fetchAll(PDO::FETCH_ASSOC);
-            } else {
-                return [];
-            }
-        } catch(PDOException $e) {
-            echo "Error en Proveedor getAll: " . $e->getMessage();
-        }
+    public function getAll()
+    {
+        $sql = "SELECT id_proveedor, nombre, ciudad, direccion FROM proveedor";
+        $consulta = $this->connection->query($sql);
+        return $consulta->fetchAll();
     }
+    
 
-    public function getById($id) {
+    public function getById($idProveedor)
+    {
         try {
-            $query = "SELECT * FROM " . $this->table . " WHERE id = ?";
-            $stmt = $this->conn->prepare($query);
-            if ($stmt->execute([$id])) {
-                $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
-                if ($resultado) {
-                    return $resultado;
-                } else {
-                    return false;
-                }
-            } else {
-                return false;
-            }
-        } catch(PDOException $e) {
-            echo "Error en Proveedor getById: " . $e->getMessage();
-        }
-    }
+            $sql = "SELECT * FROM proveedor WHERE id_proveedor = :idProveedor";
+            $consulta = $this->connection->prepare($sql);
+            $consulta->bindParam(":idProveedor", $idProveedor, PDO::PARAM_INT);
+            $consulta->execute();
 
-    public function crear($nombre, $contacto, $telefono, $email) {
-        try {
-            $query = "INSERT INTO " . $this->table . " (nombre, contacto, telefono, email) VALUES (?, ?, ?, ?)";
-            $stmt = $this->conn->prepare($query);
-            if ($stmt->execute([$nombre, $contacto, $telefono, $email])) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch(PDOException $e) {
-            echo "Error en Proveedor crear: " . $e->getMessage();
-            return false;
-        }
-    }
-
-    public function actualizar($id, $nombre, $contacto, $telefono, $email) {
-        try {
-            $query = "UPDATE " . $this->table . " SET nombre = ?, contacto = ?, telefono = ?, email = ? WHERE id = ?";
-            $stmt = $this->conn->prepare($query);
-            if ($stmt->execute([$nombre, $contacto, $telefono, $email, $id])) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch(PDOException $e) {
-            echo "Error en Proveedor actualizar: " . $e->getMessage();
-            return false;
-        }
-    }
-
-    public function eliminar($id) {
-        try {
-            $query = "DELETE FROM " . $this->table . " WHERE id = ?";
-            $stmt = $this->conn->prepare($query);
-            if ($stmt->execute([$id])) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch(PDOException $e) {
-            echo "Error en Proveedor eliminar: " . $e->getMessage();
+            return $consulta->fetch(); // fetch single record
+        } catch (PDOException $e) {
+            error_log("Error en getById de Proveedor: " . $e->getMessage());
             return false;
         }
     }
 }
-?>

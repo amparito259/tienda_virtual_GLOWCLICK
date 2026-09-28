@@ -3,23 +3,26 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Crear Categoría</title>
+    <title>Crear Proveedor</title>
 </head>
 
 <body>
 
-    <h1>Crear Categoría</h1>
+    <h1>Crear Proveedor</h1>
 
     <form method="POST">
 
-        <label>id_categoria:</label>
+        <label>id_proveedor:</label>
         <input type="text" name="id"><br><br>
 
         <label>Nombre:</label>
         <input type="text" name="nombre"><br><br>
 
-        <label>Descripción:</label>
-        <input type="text" name="descripcion"><br><br>
+        <label>ciudad:</label>
+        <input type="text" name="ciudad"><br><br>
+
+        <label>direccion:</label>
+        <input type="text" name="direccion"><br><br>
 
         <button type="submit">Guardar</button>
 
@@ -32,3 +35,6 @@
 </body>
 
 </html>
+
+
+direccion

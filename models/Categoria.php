@@ -2,24 +2,40 @@
 require_once __DIR__ . "/../config/Database.php";
 
 class Categoria {
-    private $conn;
-    private $table = "Categoria";
+    private $connection;
 
-    public function __construct($db) {
-        $this->conn = $db;
+    public function __construct()
+    {
+        $database = new Database();
+        $this->connection = $database->connect();
     }
 
-    public function obtenerTodas() {
+    public function getAll()
+    {
         try {
-            $query = "SELECT id_categoria, nombre, descripcion FROM " . $this->table;
-            $stmt = $this->conn->prepare($query);
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+            $sql = "SELECT  id_categoria, nombre, descripcion FROM categoria";
+            $consulta = $this->connection->query($sql);
+            return $consulta->fetchAll();
+            
         } catch (PDOException $e) {
-            echo "Error en Categoria getAll: " . $e->getMessage();
-            return [];
+           echo "Error Mostrando categorias" .$e->getMessage();
+        }
+        
+    }
+    
+
+    public function getById($idCliente)
+    {
+        try {
+            $sql = "SELECT * FROM categoria WHERE idCategoria = :idCategoria";
+            $consulta = $this->connection->prepare($sql);
+            $consulta->bindParam(":idCategoria", $idCategoria, PDO::PARAM_INT);
+            $consulta->execute();
+
+            return $consulta->fetch(); // fetch single record
+        } catch (PDOException $e) {
+            error_log("Error en getById de Categoria: " . $e->getMessage());
+            return false;
         }
     }
 }
-?>

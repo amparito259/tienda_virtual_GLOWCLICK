@@ -1,58 +1,35 @@
 <?php
+require_once __DIR__ . "/../config/Database.php";
+
 class Venta {
-    private $conn;
-    private $table = "ventas";
+    private $connection;
 
-    public function __construct($db) {
-        $this->conn = $db;
+    public function __construct()
+    {
+        $database = new Database();
+        $this->connection = $database->connect();
     }
 
-    public function obtenerTodos() {
-        try {
-            $query = "SELECT v.*, c.nombre as cliente FROM " . $this->table . " v LEFT JOIN clientes c ON v.cliente_id = c.id ORDER BY v.fecha DESC";
-            $stmt = $this->conn->prepare($query);
-            if ($stmt->execute()) {
-                return $stmt->fetchAll(PDO::FETCH_ASSOC);
-            } else {
-                return [];
-            }
-        } catch(PDOException $e) {
-            echo "Error en Venta obtenerTodos: " . $e->getMessage();
-        }
+    public function getAll()
+    {
+        $sql = "SELECT id_venta, id_cliente, fecha, total FROM ventas";
+        $consulta = $this->connection->query($sql);
+        return $consulta->fetchAll();
     }
+    
 
-    public function obtenerPorId($id) {
+    public function getById($idVenta)
+    {
         try {
-            $query = "SELECT v.*, c.nombre as cliente FROM " . $this->table . " v LEFT JOIN clientes c ON v.cliente_id = c.id WHERE v.id = ?";
-            $stmt = $this->conn->prepare($query);
-            if ($stmt->execute([$id])) {
-                $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
-                if ($resultado) {
-                    return $resultado;
-                } else {
-                    return false;
-                }
-            } else {
-                return false;
-            }
-        } catch(PDOException $e) {
-            echo "Error en Venta obtenerPorId: " . $e->getMessage();
-        }
-    }
+            $sql = "SELECT * FROM ventas WHERE id_venta = :idVentas";
+            $consulta = $this->connection->prepare($sql);
+            $consulta->bindParam(":idVentas", $idVenta, PDO::PARAM_INT);
+            $consulta->execute();
 
-    public function crear($cliente_id, $total) {
-        try {
-            $query = "INSERT INTO " . $this->table . " (cliente_id, total) VALUES (?, ?)";
-            $stmt = $this->conn->prepare($query);
-            if ($stmt->execute([$cliente_id, $total])) {
-                return $this->conn->lastInsertId();
-            } else {
-                return false;
-            }
-        } catch(PDOException $e) {
-            echo "Error en Venta crear: " . $e->getMessage();
+            return $consulta->fetch(); // fetch single record
+        } catch (PDOException $e) {
+            error_log("Error en getById de Venta: " . $e->getMessage());
             return false;
         }
     }
 }
-?>

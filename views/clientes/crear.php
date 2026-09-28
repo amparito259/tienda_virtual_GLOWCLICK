@@ -3,23 +3,20 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Crear Categoría</title>
+   
 </head>
 
 <body>
 
-    <h1>Crear Categoría</h1>
+    <h1>Crear Cliente</h1>
 
     <form method="POST">
 
-        <label>id_categoria:</label>
+        <label>id_cliente:</label>
         <input type="text" name="id"><br><br>
 
-        <label>Nombre:</label>
+        <label>nombre:</label>
         <input type="text" name="nombre"><br><br>
-
-        <label>Descripción:</label>
-        <input type="text" name="descripcion"><br><br>
 
         <button type="submit">Guardar</button>
 
@@ -32,3 +29,5 @@
 </body>
 
 </html>
+
+, ,

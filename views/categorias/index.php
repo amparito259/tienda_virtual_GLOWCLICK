@@ -6,9 +6,9 @@
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-    <h1>Productos</h1>
+    <h1>Categorias</h1>
   
-    <table>
+    <table border="1">
         <tr><th>id_categoria</th><th>Nombre</th><th>descripcion</th></tr>
         <?php if (!empty($categorias)): ?>
             <?php foreach ($categorias as $prod): ?>
@@ -21,7 +21,7 @@
             </tr>
             <?php endforeach; ?>
         <?php else: ?>
-            <tr><td colspan="6">No hay productos disponibles en GLOWCLICK.</td></tr>
+            <tr><td colspan="6">No hay categorias disponibles</td></tr>
         <?php endif; ?>
     </table>
     <script src="js/script.js"></script>

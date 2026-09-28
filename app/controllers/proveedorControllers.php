@@ -13,4 +13,11 @@ class ProveedorController {
             echo "Error en el controlador de proveedor" .$e->getMessage();
         }
     }
+
+    public function crear()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "GET") {
+require_once __DIR__ . '/../../views/proveedor/crear.php';
+        }
+    }
 }

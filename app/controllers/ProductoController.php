@@ -7,10 +7,18 @@ class ProductoController {
         try {
             $producto = new Producto();
             $productos = $producto->getAll();
+            
 
             require_once __DIR__ . "/../../views/productos/index.php";
         } catch (Exception $e) {
             echo "Error en el controlador de productos" .$e->getMessage();
+        }
+    }
+
+    public function crear()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "GET") {
+            require_once __DIR__ . '/../../views/productos/crear.php';
         }
     }
 }

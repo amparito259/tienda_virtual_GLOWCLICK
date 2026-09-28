@@ -1,89 +1,35 @@
 <?php
+require_once __DIR__ . "/../config/Database.php";
+
 class Usuario {
-    private $conn;
-    private $table = "usuarios";
+    private $connection;
 
-    public function __construct($db) {
-        $this->conn = $db;
+    public function __construct()
+    {
+        $database = new Database();
+        $this->connection = $database->connect();
     }
 
-    public function obtenerTodos() {
-        try {
-            $query = "SELECT id, nombre, email, rol FROM " . $this->table;
-            $stmt = $this->conn->prepare($query);
-            if ($stmt->execute()) {
-                return $stmt->fetchAll(PDO::FETCH_ASSOC);
-            } else {
-                return [];
-            }
-        } catch(PDOException $e) {
-            echo "Error en Usuario obtenerTodos: " . $e->getMessage();
-        }
+    public function getAll()
+    {
+        $sql = "SELECT id_usuario, nombre, correo, contrasena, estado FROM usuario";
+        $consulta = $this->connection->query($sql);
+        return $consulta->fetchAll();
     }
+    
 
-    public function obtenerPorId($id) {
+    public function getById($idUsuario)
+    {
         try {
-            $query = "SELECT id, nombre, email, rol FROM " . $this->table . " WHERE id = ?";
-            $stmt = $this->conn->prepare($query);
-            if ($stmt->execute([$id])) {
-                $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
-                if ($resultado) {
-                    return $resultado;
-                } else {
-                    return false;
-                }
-            } else {
-                return false;
-            }
-        } catch(PDOException $e) {
-            echo "Error en Usuario obtenerPorId: " . $e->getMessage();
-        }
-    }
+            $sql = "SELECT * FROM usuario WHERE id_usuario = :idUsuario";
+            $consulta = $this->connection->prepare($sql);
+            $consulta->bindParam(":idUsuario", $idUsuario, PDO::PARAM_INT);
+            $consulta->execute();
 
-    public function crear($nombre, $email, $password, $rol = 'admin') {
-        try {
-            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-            $query = "INSERT INTO " . $this->table . " (nombre, email, password, rol) VALUES (?, ?, ?, ?)";
-            $stmt = $this->conn->prepare($query);
-            if ($stmt->execute([$nombre, $email, $hashed_password, $rol])) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch(PDOException $e) {
-            echo "Error en Usuario crear: " . $e->getMessage();
-            return false;
-        }
-    }
-
-    public function actualizar($id, $nombre, $email, $rol) {
-        try {
-            $query = "UPDATE " . $this->table . " SET nombre = ?, email = ?, rol = ? WHERE id = ?";
-            $stmt = $this->conn->prepare($query);
-            if ($stmt->execute([$nombre, $email, $rol, $id])) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch(PDOException $e) {
-            echo "Error en Usuario actualizar: " . $e->getMessage();
-            return false;
-        }
-    }
-
-    public function eliminar($id) {
-        try {
-            $query = "DELETE FROM " . $this->table . " WHERE id = ?";
-            $stmt = $this->conn->prepare($query);
-            if ($stmt->execute([$id])) {
-                return true;
-            } else {
-                return false;
-            }
-        } catch(PDOException $e) {
-            echo "Error en Usuario eliminar: " . $e->getMessage();
+            return $consulta->fetch(); // fetch single record
+        } catch (PDOException $e) {
+            error_log("Error en getById de Usuario: " . $e->getMessage());
             return false;
         }
     }
 }
-?>

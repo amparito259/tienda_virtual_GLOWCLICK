@@ -8,7 +8,7 @@
 <body>
     <h1>Productos</h1>
   
-    <table>
+    <table border="1">
         <tr><th>id_producto</th><th>Nombre</th><th>Precio</th><th>Stock</th><th>id_Categoría</th><th>id_proveedor</th></tr>
         <?php if (!empty($productos)): ?>
             <?php foreach ($productos as $prod): ?>

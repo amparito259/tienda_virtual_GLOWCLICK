@@ -2,11 +2,10 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Detalle de Venta - GLOWCLICK</title>
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-    <h1>Detalle de la Venta</h1>
+    <h1> Venta</h1>
     <a href="index.php?controlador=venta&accion=index">Volver a Ventas</a>
     <table>
         <tr><th>ID Detalle</th><th>Producto</th><th>Cantidad</th><th>Precio Unitario</th></tr>
