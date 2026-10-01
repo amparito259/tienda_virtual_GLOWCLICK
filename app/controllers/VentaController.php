@@ -5,8 +5,8 @@ require_once __DIR__ . "/../../models/Venta.php";
 class VentaController {
     public function index(){
         try {
-            $Venta = new Venta ();
-            $Venta = $Venta->getAll();
+            $modelVenta = new Venta ();
+            $ventas = $modelVenta->getAll();
 
             require_once __DIR__ . "/../../views/Ventas/index.php";
         } catch (Exception $e) {
@@ -14,10 +14,24 @@ class VentaController {
         }
     }
 
-    public function crear()
-    {
-        if ($_SERVER["REQUEST_METHOD"] == "GET") {
-            require_once __DIR__ . '/../../app/controllers/VentaController.php';
+   public function crear(){
+        require_once __DIR__ . '/../../views/ventas/crear.php';
+    }
+
+    public function guardar(){
+        $id_venta=$_POST['id_venta'];
+        $id_cliente=$_POST['id_cliente'];
+        $fecha=$_POST['fecha'];
+        $total=$_POST['total'];
+
+        $modelVenta = new Venta();
+        $resultado = $modelVenta->guardar($id_venta, $id_cliente, $fecha, $total);
+
+        if ($resultado) {
+            echo "Venta guardada correctamente.";
+            $modelVenta->getAll();
+        } else {
+            echo "Error al guardar la venta.";
         }
     }
 }

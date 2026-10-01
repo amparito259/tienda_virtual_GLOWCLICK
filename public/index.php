@@ -1,13 +1,23 @@
-<a href="index.php?controlador=categoria&accion=crear" class="btn btn-primary">Categoria</a>
-<a href="index.php?controlador=clientea&accion=crear" class="btn btn-primary">Cliente</a>
-<a href="index.php?controlador=producto&accion=crear" class="btn btn-primary">Producto</a>
-<a href="index.php?controlador=proveedor&accion=crear" class="btn btn-primary">proveedor</a>
-<a href="index.php?controlador=usuario&accion=crear" class="btn btn-primary">usuario</a>
-<a href="index.php?controlador=venta&accion=crear" class="btn btn-primary">Venta</a>
+<a href="/categoria">Categoria</a>
+<a href="/cliente">Cliente</a>
+<a href="/producto">Producto</a>
+<a href="/proveedor">proveedor</a>
+<a href="/usuario">usuario</a>
+<a href="/venta">Venta</a>
+
+<br></br>
+
+<a href="/categoria/crear">crearCategoria</a> 
+<a href="/cliente/crear" >crearCliente</a>
+<a href="/producto/crear" >crearProducto</a>
+<a href="/proveedor/crear" >crearProveedor</a>
+<a href="/usuario/crear" >crearUsuario</a>
+<a href="/venta/crear" >crearVenta</a>
 
 
 
 <?php
+
 require_once __DIR__ . "/../app/controllers/CategoriaController.php";
 require_once __DIR__ . '/../app/controllers/ClienteController.php';
 require_once __DIR__ . "/../app/controllers/ProductoController.php";
@@ -20,82 +30,95 @@ require_once __DIR__ . "/../app/controllers/VentaController.php";
 $method = $_SERVER['REQUEST_METHOD']; 
 $uri = $_SERVER['REQUEST_URI'];
 
-$controllerCategoria = new CategoriaController();
-$controllerCategoria->index();
-
-$controller = new ClienteController();
-$controller->index();
-
-$controllerProducto = new ProductoController();
-$controllerProducto->index();
-
-$ControllerProveedor = new ProveedorController();
-$ControllerProveedor->index();
-
-$ControllerUsuario = new UsuarioController();
-$ControllerUsuario->index();
-
-$ControllerVenta = new VentaController();
-$ControllerVenta->index();
-
-
+//CATEGORIAS
 if ($method === 'GET' && $uri === "/categoria"){
     $categoriaController = new CategoriaController();
     $categoriaController->index();
 }
+if ($method === 'GET' && $uri === "/categoria/crear"){
+    $categoriaController = new CategoriaController();
+    $categoriaController->crear();
+}
+if ($method === 'POST' && $uri === "/categoria"){
+    $categoriaController = new CategoriaController();
+    $categoriaController->guardar();
+}
 
+//CLIENTES
 if ($method === 'GET' && $uri === "/cliente"){
     $clienteController = new ClienteController();
     $clienteController->index();
 }
+if ($method === 'GET' && $uri === "/cliente/crear"){
+    $clienteController = new ClienteController();
+    $clienteController->crear();
+}
+if ($method === 'POST' && $uri === "/cliente"){
+    $clienteController = new ClienteController();
+    $clienteController->guardar();
+}
+
+//PRODUCTOS
 
 if ($method === 'GET' && $uri === "/producto"){
     $ProductoController = new ProductoController();
     $ProductoController->index();
 }
+if ($method === 'GET' && $uri === "/producto/crear"){
+    $ProductoController = new ProductoController();
+    $ProductoController->crear();
+}
+if ($method === 'POST' && $uri === "/producto"){
+    $ProductoController = new ProductoController();
+    $ProductoController->guardar();
+}
 
-if ($method === 'GET' && $uri === "/Proveedor"){
+
+//PROVEEDORES
+
+if ($method === 'GET' && $uri === "/proveedor"){
     $ProveedorController = new ProveedorController();
     $ProveedorController->index();
 }
+if ($method === 'GET' && $uri === "/proveedor/crear"){
+    $ProveedorController = new ProveedorController();
+    $ProveedorController->crear();
+}
+if ($method === 'POST' && $uri === "/proveedor"){
+    $ProveedorController = new ProveedorController();
+    $ProveedorController->guardar();
+}
 
-if ($method === 'GET' && $uri === "/Usuario"){
+//USUARIOS
+
+if ($method === 'GET' && $uri === "/usuario"){
     $UsuarioController = new UsuarioController();
     $UsuarioController->index();
 }
+if ($method === 'GET' && $uri === "/usuario/crear"){
+    $UsuarioController = new UsuarioController();
+    $UsuarioController->crear();
+}
+if ($method === 'POST' && $uri === "/usuario"){
+    $UsuarioController = new UsuarioController();
+    $UsuarioController->guardar();
+}
 
-if ($method === 'GET' && $uri === "/Venta"){
+//VENTAS
+
+
+if ($method === 'GET' && $uri === "/venta"){
     $VentaController = new VentaController();
     $VentaController->index();
 }
-
-require_once "../app/controllers/CategoriaController.php";
-$controller = new CategoriaController();
-$controller->crear();
-
-require_once "../app/controllers/ClienteController.php";
-$controller = new ClienteController();
-$controller->crear();
-
-require_once "../app/controllers/ProductoController.php";
-$controller = new ProductoController();
-$controller->crear();
-
-require_once "../app/controllers/proveedorControllers.php";
-$controller = new ProveedorController();
-$controller->crear();
-
-require_once "../app/controllers/UsuarioController.php";
-$controller = new UsuarioController();
-$controller->crear();
-
-require_once "../app/controllers/VentaController.php";
-$controller = new VentaController();
-$controller->crear();
-
-
-
-
+if ($method === 'GET' && $uri === "/venta/crear"){
+    $VentaController = new VentaController();
+    $VentaController->crear();
+}
+if ($method === 'POST' && $uri === "/venta"){
+    $VentaController = new VentaController();
+    $VentaController->guardar();
+}
 
 ?>
 

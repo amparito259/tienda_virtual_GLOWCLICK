@@ -12,9 +12,31 @@ class Proveedor {
 
     public function getAll()
     {
-        $sql = "SELECT id_proveedor, nombre, ciudad, direccion FROM proveedor";
-        $consulta = $this->connection->query($sql);
-        return $consulta->fetchAll();
+        try {
+            $sql = "SELECT id_proveedor, nombre, ciudad, direccion FROM proveedor";
+            $consulta = $this->connection->query($sql);
+            return $consulta->fetchAll();
+        } catch (PDOException $e) {
+            echo "Error Mostrando proveedores: " . $e->getMessage();
+        }
+    }
+
+    public function guardar($id_proveedor, $nombre, $ciudad, $direccion)
+    {
+        try {
+            $sql = "INSERT INTO proveedor (id_proveedor, nombre, ciudad, direccion) 
+            VALUES (:id_proveedor, :nombre, :ciudad, :direccion)";
+            $consulta = $this->connection->prepare($sql);
+            $consulta->bindParam(":id_proveedor", $id_proveedor);
+            $consulta->bindParam(":nombre", $nombre);
+            $consulta->bindParam(":ciudad", $ciudad);
+            $consulta->bindParam(":direccion", $direccion);
+            $consulta->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo "Error guardando proveedor: " . $e->getMessage();
+            return false;
+        }
     }
     
 

@@ -1,40 +1,18 @@
-<!DOCTYPE html>
-<html lang="es">
+<h1>Lista de Proveedor</h1>
 
-<head>
-    <meta charset="UTF-8">
-    <title>Crear Proveedor</title>
-</head>
+<form action="/proveedor" method="POST">
+    <label for="nombre">id_proveedor:</label>
+    <input type="text"  id="nombre" name="nombre"><br><br>
 
-<body>
+    <label for="descripcion">nombre:</label>
+    <input type="text" name="descripcion" id="descripcion" required><br><br>
 
-    <h1>Crear Proveedor</h1>
+    <label for="descripcion">ciudad:</label>
+    <input type="text" name="descripcion" id="descripcion" required><br><br>
 
-    <form method="POST">
+    <label for="descripcion">direccion:</label>
+    <input type="text" name="descripcion" id="descripcion" required><br><br>
 
-        <label>id_proveedor:</label>
-        <input type="text" name="id"><br><br>
+  <button type="submit">Guardar</button>
 
-        <label>Nombre:</label>
-        <input type="text" name="nombre"><br><br>
-
-        <label>ciudad:</label>
-        <input type="text" name="ciudad"><br><br>
-
-        <label>direccion:</label>
-        <input type="text" name="direccion"><br><br>
-
-        <button type="submit">Guardar</button>
-
-    </form>
-
-    <br>
-
-    <a href="index.php">Volver</a>
-
-</body>
-
-</html>
-
-
-direccion
+</form>

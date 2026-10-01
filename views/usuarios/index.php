@@ -12,7 +12,6 @@
         <?php if (!empty($usuarios)): ?>
             <?php foreach ($usuarios as $usu): ?>
             <tr>
-                <td><?= $usu['id'] ?></td>
                 <td><?= htmlspecialchars($usu['id_usuario']) ?></td>
                 <td><?= htmlspecialchars($usu['nombre']) ?></td>
                 <td><?= htmlspecialchars($usu['correo']) ?></td>

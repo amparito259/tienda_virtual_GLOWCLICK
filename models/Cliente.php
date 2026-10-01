@@ -12,9 +12,30 @@ class Cliente {
 
     public function getAll()
     {
-        $sql = "SELECT id_cliente, nombre, FROM cliente";
-        $consulta = $this->connection->query($sql);
+        try {
+              $sql = "SELECT id_cliente, nombre FROM clientes";
+              $consulta = $this->connection->query($sql);
         return $consulta->fetchAll();
+        }catch (PDOException $e) {
+           echo "Error Mostrando clientes" .$e->getMessage();
+        }
+      
+    }
+
+    public function guardar($id_cliente, $nombre)
+    {
+        try {
+            $sql = "INSERT INTO cliente (id_cliente, nombre) 
+            VALUES (:id_cliente, :nombre)";
+            $consulta = $this->connection->prepare($sql);
+            $consulta->bindParam(":id_cliente", $id_cliente);
+            $consulta->bindParam(":nombre", $nombre);
+            $consulta->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo "Error guardando cliente" . $e->getMessage();
+            return false;
+        }
     }
     
 

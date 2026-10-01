@@ -1,33 +1,12 @@
-<!DOCTYPE html>
-<html lang="es">
+<h1>Lista de clientes</h1>
 
-<head>
-    <meta charset="UTF-8">
-   
-</head>
+<form action="cliente" method="POST">
+    <label for="nombre">id_cliente:</label>
+    <input type="text"  id="nombre" name="nombre"><br><br>
 
-<body>
+    <label for="descripcion">nombre:</label>
+    <input type="text" name="descripcion" id="descripcion" required><br><br>
 
-    <h1>Crear Cliente</h1>
+  <button type="submit">Guardar</button>
 
-    <form method="POST">
-
-        <label>id_cliente:</label>
-        <input type="text" name="id"><br><br>
-
-        <label>nombre:</label>
-        <input type="text" name="nombre"><br><br>
-
-        <button type="submit">Guardar</button>
-
-    </form>
-
-    <br>
-
-    <a href="index.php">Volver</a>
-
-</body>
-
-</html>
-
-, ,
+</form>

@@ -12,9 +12,33 @@ class Usuario {
 
     public function getAll()
     {
-        $sql = "SELECT id_usuario, nombre, correo, contrasena, estado FROM usuario";
-        $consulta = $this->connection->query($sql);
+        try{
+              $sql = "SELECT id_usuario, nombre, correo, contrasena, estado FROM usuario";
+              $consulta = $this->connection->query($sql);
         return $consulta->fetchAll();
+        }catch (PDOException $e) {
+           echo "Error Mostrando usuarios" .$e->getMessage();
+        }
+      
+    }
+
+    public function guardar($id_usuario, $nombre, $correo, $contrasena, $estado)
+    {
+        try {
+            $sql = "INSERT INTO usuario (id_usuario, nombre, correo, contrasena, estado) 
+            VALUES (:id_usuario, :nombre, :correo, :contrasena, :estado)";
+            $consulta = $this->connection->prepare($sql);
+            $consulta->bindParam(":id_usuario", $id_usuario);
+            $consulta->bindParam(":nombre", $nombre);
+            $consulta->bindParam(":correo", $correo);
+            $consulta->bindParam(":contrasena", $contrasena);
+            $consulta->bindParam(":estado", $estado);
+            $consulta->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo "Error guardando usuario" . $e->getMessage();
+            return false;
+        }
     }
     
 

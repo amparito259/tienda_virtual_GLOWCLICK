@@ -1,34 +1,15 @@
-<!DOCTYPE html>
-<html lang="es">
+<h1>Lista de Categorias</h1>
 
-<head>
-    <meta charset="UTF-8">
-    <title>Crear Categoría</title>
-</head>
+<form action="/categoria" method="POST">
+    <label for="nombre">id_categoria:</label>
+    <input type="text"  id="nombre" name="nombre"><br><br>
 
-<body>
+    <label for="descripcion">nombre:</label>
+    <input type="text" name="descripcion" id="descripcion" required><br><br>
 
-    <h1>Crear Categoría</h1>
+     <label for="descripcion">descripcion:</label>
+    <input type="text" name="descripcion" id="descripcion" required><br><br>
 
-    <form method="POST">
+  <button type="submit">Guardar</button>
 
-        <label>id_categoria:</label>
-        <input type="text" name="id"><br><br>
-
-        <label>Nombre:</label>
-        <input type="text" name="nombre"><br><br>
-
-        <label>Descripción:</label>
-        <input type="text" name="descripcion"><br><br>
-
-        <button type="submit">Guardar</button>
-
-    </form>
-
-    <br>
-
-    <a href="index.php">Volver</a>
-
-</body>
-
-</html>
+</form>

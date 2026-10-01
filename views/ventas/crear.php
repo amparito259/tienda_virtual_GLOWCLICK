@@ -1,37 +1,19 @@
-<!DOCTYPE html>
-<html lang="es">
+<h1>Lista de Ventas</h1>
 
-<head>
-    <meta charset="UTF-8">
-    <title>Crear Ventas</title>
-</head>
+<form action="/venta" method="POST">
+    <label for="nombre">id_venta:</label>
+    <input type="text"  id="nombre" name="nombre"><br><br>
 
-<body>
+    <label for="descripcion">id_cliente:</label>
+    <input type="text" name="descripcion" id="descripcion" required><br><br>
 
-    <h1>Crear Ventas</h1>
+    <label for="descripcion">fecha:</label>
+    <input type="text" name="descripcion" id="descripcion" required><br><br>
 
-    <form method="POST">
+    <label for="descripcion">total:</label>
+    <input type="text" name="descripcion" id="descripcion" required><br><br>
 
-        <label>id_venta:</label>
-        <input type="text" name="id"><br><br>
+  <button type="submit">Guardar</button>
+  
 
-        <label>id_cliente:</label>
-        <input type="text" name="id_cliente"><br><br>
-
-        <label>fecha:</label>
-        <input type="text" name="fecha"><br><br>
-
-        <label>total:</label>
-        <input type="text" name="total"><br><br>
-
-        <button type="submit">Guardar</button>
-
-    </form>
-
-    <br>
-
-    <a href="index.php">Volver</a>
-
-</body>
-
-</html>
+</form>

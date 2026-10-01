@@ -12,7 +12,6 @@
         <?php if (!empty($ventas)): ?>
             <?php foreach ($ventas as $ven): ?>
             <tr>
-                <td><?= $ven['id'] ?></td>
                 <td><?= htmlspecialchars($ven['id_venta']) ?></td>
                 <td><?= htmlspecialchars($ven['id_cliente']) ?></td>
                 <td><?= htmlspecialchars($ven['fecha']) ?></td>

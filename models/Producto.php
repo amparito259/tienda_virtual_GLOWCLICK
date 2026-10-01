@@ -16,12 +16,32 @@ class Producto {
         $consulta = $this->connection->query($sql);
         return $consulta->fetchAll();
     }
+
+    public function guardar($id_producto, $nombre, $precio, $stock, $id_categoria, $id_proveedor)
+    {
+        try {
+            $sql = "INSERT INTO producto (id_producto, nombre, precio, stock, id_categoria, id_proveedor) 
+            VALUES (:id_producto, :nombre, :precio, :stock, :id_categoria, :id_proveedor)";
+            $consulta = $this->connection->prepare($sql);
+            $consulta->bindParam(":id_producto", $id_producto);
+            $consulta->bindParam(":nombre", $nombre);
+            $consulta->bindParam(":precio", $precio);
+            $consulta->bindParam(":stock", $stock);
+            $consulta->bindParam(":id_categoria", $id_categoria);
+            $consulta->bindParam(":id_proveedor", $id_proveedor);
+            $consulta->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo "Error guardando producto" . $e->getMessage();
+            return false;
+        }
+    }
     
 
     public function getById($idProducto)
     {
         try {
-            $sql = "SELECT * FROM producto WHERE idProducto = :idProducto";
+            $sql = "SELECT * FROM producto WHERE id_producto = :idProducto";
             $consulta = $this->connection->prepare($sql);
             $consulta->bindParam(":idProducto", $idProducto, PDO::PARAM_INT);
             $consulta->execute();

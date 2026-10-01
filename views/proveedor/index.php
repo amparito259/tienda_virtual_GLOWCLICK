@@ -9,10 +9,9 @@
     
     <table border="1">
         <tr><th>id_proveedor</th><th>nombre</th><th>ciudad</th><th>direccion</th></tr>
-        <?php if (!empty($proveedores)): ?>
-            <?php foreach ($proveedores as $prov): ?>
+        <?php if (!empty($proveedor)): ?>
+            <?php foreach ($proveedor as $prov): ?>
             <tr>
-                <td><?= $prov['id'] ?></td>
                 <td><?= htmlspecialchars($prov['id_proveedor']) ?></td>
                 <td><?= htmlspecialchars($prov['nombre']) ?></td>
                 <td><?= htmlspecialchars($prov['ciudad']) ?></td>

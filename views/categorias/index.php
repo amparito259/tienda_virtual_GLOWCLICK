@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    
+
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
@@ -16,8 +16,6 @@
                 <td><?= $prod['id_categoria'] ?></td>
                 <td><?= $prod['nombre'] ?></td>
                 <td>$<?= $prod['descripcion'] ?></td>
-              
-               
             </tr>
             <?php endforeach; ?>
         <?php else: ?>

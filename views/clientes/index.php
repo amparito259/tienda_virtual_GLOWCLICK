@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
@@ -9,14 +10,11 @@
    
     <table border="1">
         <tr><th>id_cliente</th><th>nombre</th></tr>
-        <?php if (!empty($cliente)): ?>
-            <?php foreach ($cliente as $cli): ?>
+        <?php if (!empty($clientes)): ?>
+            <?php foreach ($clientes as $cli): ?>
             <tr>
                 <td><?= htmlspecialchars($cli['id_cliente']) ?></td>
                 <td><?= htmlspecialchars($cli['nombre']) ?></td>
-                <td>
-            
-                </td>
             </tr>
             <?php endforeach; ?>
         <?php else: ?>

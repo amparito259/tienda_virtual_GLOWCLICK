@@ -1,43 +1,24 @@
-<!DOCTYPE html>
-<html lang="es">
+<h1>Lista de Productos</h1>
 
-<head>
-    <meta charset="UTF-8">
-    <title>Crear Producto</title>
-</head>
+<form action="/producto" method="POST">
+    <label for="nombre">id_producto:</label>
+    <input type="text"  id="nombre" name="nombre"><br><br>
 
-<body>
+    <label for="descripcion">nombre:</label>
+    <input type="text" name="descripcion" id="descripcion" required><br><br>
 
-    <h1>Crear Producto</h1>
+    <label for="descripcion">precio:</label>
+    <input type="text" name="descripcion" id="descripcion" required><br><br>
 
-    <form method="POST">
+    <label for="descripcion">stock:</label>
+    <input type="text" name="descripcion" id="descripcion" required><br><br>
 
-        <label>id_producto:</label>
-        <input type="text" name="id"><br><br>
+    <label for="descripcion">id_categoria:</label>
+    <input type="text" name="descripcion" id="descripcion" required><br><br>
 
-        <label>Nombre:</label>
-        <input type="text" name="nombre"><br><br>
+    <label for="descripcion">id_proveedor:</label>
+    <input type="text" name="descripcion" id="descripcion" required><br><br>
 
-        <label>Precio:</label>
-        <input type="text" name="precio"><br><br>
+  <button type="submit">Guardar</button>
 
-        <label>Stock:</label>
-        <input type="text" name="stock"><br><br>
-
-        <label>id_Categoría:</label>
-        <input type="text" name="id_categoria"><br><br>
-
-        <label>id_proveedor:</label>
-        <input type="text" name="id_proveedor"><br><br>
-
-        <button type="submit">Guardar</button>
-
-    </form>
-
-    <br>
-
-    <a href="index.php">Volver</a>
-
-</body>
-
-</html>
+</form>
