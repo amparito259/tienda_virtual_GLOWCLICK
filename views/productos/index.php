@@ -2,24 +2,29 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-    <h1>Productos</h1>
+    <h1 style="color: #ff0f0f;">Productos</h1>
   
     <table border="1">
-        <tr><th>id_producto</th><th>Nombre</th><th>Precio</th><th>Stock</th><th>id_Categoría</th><th>id_proveedor</th></tr>
+        <tr>
+            <th>id_producto</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>id_Categoría</th>
+            <th>id_proveedor</th>
+        </tr>
         <?php if (!empty($productos)): ?>
             <?php foreach ($productos as $prod): ?>
             <tr>
-                <td><?= $prod['id_producto'] ?></td>
-                <td><?= $prod['nombre'] ?></td>
-                <td>$<?= $prod['precio'] ?></td>
-                <td><?= $prod['stock'] ?></td>
-                <td><?= $prod['id_categoria'] ?></td>
-                <td><?= $prod['id_proveedor'] ?></td>
-               
+                <td><?= htmlspecialchars($prod['id_producto']) ?></td>
+                <td><?= htmlspecialchars($prod['nombre']) ?></td>
+                <td>$<?= htmlspecialchars($prod['precio']) ?></td>
+                <td><?= htmlspecialchars($prod['stock']) ?></td>
+                <td><?= htmlspecialchars($prod['id_categoria']) ?></td>
+                <td><?= htmlspecialchars($prod['id_proveedor']) ?></td>
             </tr>
             <?php endforeach; ?>
         <?php else: ?>

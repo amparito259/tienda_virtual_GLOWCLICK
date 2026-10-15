@@ -1,21 +1,20 @@
-<h1>Lista de Usuarios</h1>
+<h1 style="color: #ff0f0f;">Crear Usuario</h1>
 
 <form action="/usuario" method="POST">
-    <label for="nombre">id_usuario:</label>
-    <input type="text"  id="nombre" name="nombre"><br><br>
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" placeholder="Nombre del usuario" required><br><br>
 
-    <label for="descripcion">nombre:</label>
-    <input type="text" name="descripcion" id="descripcion" required><br><br>
+    <label for="correo">Correo:</label>
+    <input type="email" id="correo" name="correo" placeholder="correo@ejemplo.com" required><br><br>
 
-    <label for="descripcion">correo:</label>
-    <input type="email" name="descripcion" id="descripcion" required><br><br>
+    <label for="contrasena">Contraseña:</label>
+    <input type="password" id="contrasena" name="contrasena" placeholder="Ingrese una contraseña" required><br><br>
 
-    <label for="descripcion">contrasena:</label>
-    <input type="password" name="descripcion" id="descripcion" required><br><br>
+    <label for="estado">Estado:</label>
+    <select id="estado" name="estado" required>
+        <option value="Activo">Activo</option>
+        <option value="Inactivo">Inactivo</option>
+    </select><br><br>
 
-    <label for="descripcion">estado:</label>
-    <input type="text" name="descripcion" id="descripcion" required><br><br>
-
-  <button type="submit">Guardar</button>
-
+    <button type="submit" style="color: #e638fd;">Guardar</button>
 </form>

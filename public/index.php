@@ -1,18 +1,17 @@
-<a href="/categoria">Categoria</a>
-<a href="/cliente">Cliente</a>
-<a href="/producto">Producto</a>
-<a href="/proveedor">proveedor</a>
-<a href="/usuario">usuario</a>
-<a href="/venta">Venta</a>
+<button><a href="/categoria" style="color: #be43fb;">Categoria</a></button>
+<button><a href="/cliente" style="color: #be43fb;">Cliente</a></button>
+<button><a href="/producto" style="color: #be43fb;">Producto</a></button>
+<button><a href="/proveedor" style="color: #be43fb;">proveedor</a></button>
+<button><a href="/usuario" style="color: #be43fb;">usuario</a></button>
+<button><a href="/venta" style="color: #be43fb;">Venta</a></button>
 
-<br></br>
-
-<a href="/categoria/crear">crearCategoria</a> 
-<a href="/cliente/crear" >crearCliente</a>
-<a href="/producto/crear" >crearProducto</a>
-<a href="/proveedor/crear" >crearProveedor</a>
-<a href="/usuario/crear" >crearUsuario</a>
-<a href="/venta/crear" >crearVenta</a>
+<br><br>
+<button><a href="/categoria/crear"style="color: #be43fb;">crearCategoria</a> </button>
+<button><a href="/cliente/crear" style="color: #be43fb;">crearCliente</a></button>
+<button><a href="/producto/crear" style="color: #be43fb;">crearProducto</a></button>
+<button><a href="/proveedor/crear" style="color: #be43fb;">crearProveedor</a></button>
+<button><a href="/usuario/crear" style="color: #be43fb;">crearUsuario</a></button>
+<button><a href="/venta/crear" style="color: #be43fb;">crearVenta</a></button>
 
 
 

@@ -17,28 +17,28 @@ class Proveedor {
             $consulta = $this->connection->query($sql);
             return $consulta->fetchAll();
         } catch (PDOException $e) {
-            echo "Error Mostrando proveedores: " . $e->getMessage();
+            echo "Error mostrando proveedores: " . $e->getMessage();
+            return [];
         }
     }
 
-    public function guardar($id_proveedor, $nombre, $ciudad, $direccion)
+    public function guardar($nombre, $ciudad, $direccion)
     {
         try {
-            $sql = "INSERT INTO proveedor (id_proveedor, nombre, ciudad, direccion) 
-            VALUES (:id_proveedor, :nombre, :ciudad, :direccion)";
+            $sql = "INSERT INTO proveedor (nombre, ciudad, direccion) 
+                    VALUES (:nombre, :ciudad, :direccion)";
             $consulta = $this->connection->prepare($sql);
-            $consulta->bindParam(":id_proveedor", $id_proveedor);
             $consulta->bindParam(":nombre", $nombre);
             $consulta->bindParam(":ciudad", $ciudad);
             $consulta->bindParam(":direccion", $direccion);
             $consulta->execute();
-            return true;
+            
+            return $this->connection->lastInsertId();
         } catch (PDOException $e) {
             echo "Error guardando proveedor: " . $e->getMessage();
             return false;
         }
     }
-    
 
     public function getById($idProveedor)
     {
@@ -48,7 +48,7 @@ class Proveedor {
             $consulta->bindParam(":idProveedor", $idProveedor, PDO::PARAM_INT);
             $consulta->execute();
 
-            return $consulta->fetch(); // fetch single record
+            return $consulta->fetch();
         } catch (PDOException $e) {
             error_log("Error en getById de Proveedor: " . $e->getMessage());
             return false;

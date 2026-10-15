@@ -5,10 +5,15 @@
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-    <h1>Proveedores</h1>
+    <h1 style="color: #ff0f0f;">Proveedores</h1>
     
     <table border="1">
-        <tr><th>id_proveedor</th><th>nombre</th><th>ciudad</th><th>direccion</th></tr>
+        <tr>
+            <th>id_proveedor</th>
+            <th>Nombre</th>
+            <th>Ciudad</th>
+            <th>Dirección</th>
+        </tr>
         <?php if (!empty($proveedor)): ?>
             <?php foreach ($proveedor as $prov): ?>
             <tr>
@@ -16,13 +21,10 @@
                 <td><?= htmlspecialchars($prov['nombre']) ?></td>
                 <td><?= htmlspecialchars($prov['ciudad']) ?></td>
                 <td><?= htmlspecialchars($prov['direccion']) ?></td>
-                <td>
-                
-                </td>
             </tr>
             <?php endforeach; ?>
         <?php else: ?>
-            <tr><td colspan="6">No hay proveedores registrados.</td></tr>
+            <tr><td colspan="4">No hay proveedores registrados.</td></tr>
         <?php endif; ?>
     </table>
     <script src="js/script.js"></script>

@@ -12,35 +12,34 @@ class Usuario {
 
     public function getAll()
     {
-        try{
-              $sql = "SELECT id_usuario, nombre, correo, contrasena, estado FROM usuario";
-              $consulta = $this->connection->query($sql);
-        return $consulta->fetchAll();
-        }catch (PDOException $e) {
-           echo "Error Mostrando usuarios" .$e->getMessage();
+        try {
+            $sql = "SELECT id_usuario, nombre, correo, contrasena, estado FROM usuario";
+            $consulta = $this->connection->query($sql);
+            return $consulta->fetchAll();
+        } catch (PDOException $e) {
+            echo "Error mostrando usuarios: " . $e->getMessage();
+            return [];
         }
-      
     }
 
-    public function guardar($id_usuario, $nombre, $correo, $contrasena, $estado)
+    public function guardar($nombre, $correo, $contrasena, $estado)
     {
         try {
-            $sql = "INSERT INTO usuario (id_usuario, nombre, correo, contrasena, estado) 
-            VALUES (:id_usuario, :nombre, :correo, :contrasena, :estado)";
+            $sql = "INSERT INTO usuario (nombre, correo, contrasena, estado) 
+                    VALUES (:nombre, :correo, :contrasena, :estado)";
             $consulta = $this->connection->prepare($sql);
-            $consulta->bindParam(":id_usuario", $id_usuario);
             $consulta->bindParam(":nombre", $nombre);
             $consulta->bindParam(":correo", $correo);
             $consulta->bindParam(":contrasena", $contrasena);
             $consulta->bindParam(":estado", $estado);
             $consulta->execute();
-            return true;
+            
+            return $this->connection->lastInsertId();
         } catch (PDOException $e) {
-            echo "Error guardando usuario" . $e->getMessage();
+            echo "Error guardando usuario: " . $e->getMessage();
             return false;
         }
     }
-    
 
     public function getById($idUsuario)
     {
@@ -50,7 +49,7 @@ class Usuario {
             $consulta->bindParam(":idUsuario", $idUsuario, PDO::PARAM_INT);
             $consulta->execute();
 
-            return $consulta->fetch(); // fetch single record
+            return $consulta->fetch();
         } catch (PDOException $e) {
             error_log("Error en getById de Usuario: " . $e->getMessage());
             return false;

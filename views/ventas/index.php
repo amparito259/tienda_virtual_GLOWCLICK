@@ -5,24 +5,26 @@
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-    <h1>Ventas</h1>
+    <h1 style="color: #ff0f0f;">Ventas</h1>
 
     <table border="1">
-        <tr><th>id_venta</th><th>id_cliente</th><th>fecha</th><th>total</th></tr>
+        <tr>
+            <th>ID Venta</th>
+            <th>ID Cliente</th>
+            <th>Fecha</th>
+            <th>Total</th>
+        </tr>
         <?php if (!empty($ventas)): ?>
             <?php foreach ($ventas as $ven): ?>
             <tr>
                 <td><?= htmlspecialchars($ven['id_venta']) ?></td>
                 <td><?= htmlspecialchars($ven['id_cliente']) ?></td>
                 <td><?= htmlspecialchars($ven['fecha']) ?></td>
-                <td><?= htmlspecialchars($ven['total']) ?></td>
-                <td>
-             
-                </td>
+                <td>$<?= htmlspecialchars(number_format($ven['total'], 2)) ?></td>
             </tr>
             <?php endforeach; ?>
         <?php else: ?>
-            <tr><td colspan="5">No hay ventas registradas.</td></tr>
+            <tr><td colspan="4">No hay ventas registradas.</td></tr>
         <?php endif; ?>
     </table>
     <script src="js/script.js"></script>

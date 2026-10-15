@@ -13,7 +13,7 @@ class Categoria {
     public function getAll()
     {
         try {
-            $sql = "SELECT  id_categoria, nombre, descripcion FROM categoria";
+            $sql = "SELECT * FROM categoria";
             $consulta = $this->connection->query($sql);
             return $consulta->fetchAll();
         } catch (PDOException $e) {
@@ -22,20 +22,19 @@ class Categoria {
         
     }
     
-    public function guardar($id_categoria, $nombre, $descripcion)
+    public function guardar($nombre, $descripcion) //falto corregir
     {
         try {
-            $sql = "INSERT INTO categoria (id_categoria, nombre, descripcion) 
-            VALUES (:id_categoria, :nombre, :descripcion)";
+            $sql = "INSERT INTO categoria (nombre, descripcion) 
+            VALUES (:nombre, :descripcion)";
             $consulta = $this->connection->prepare($sql);
-            $consulta->bindParam(":id_categoria", $id_categoria );
             $consulta->bindParam(":nombre", $nombre );
             $consulta->bindParam(":descripcion", $descripcion );
             $consulta->execute();
-            return true;
+
+            return $this->connection->lastInsertId(); // Return the ID of the newly inserted category
         } catch (PDOException $e) {
             echo "Error guardando categoria" . $e->getMessage();
-            return false;
         }
     }
 

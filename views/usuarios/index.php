@@ -5,21 +5,24 @@
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-    <h1>Usuarios</h1>
+    <h1 style="color: #ff0f0f;">Usuarios</h1>
  
     <table border="1">
-        <tr><th>id_usuario</th><th>nombre</th><th>correo</th><th>contrasena</th><th>estado</th></tr>
+        <tr>
+            <th>id_usuario</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Contraseña</th>
+            <th>Estado</th>
+        </tr>
         <?php if (!empty($usuarios)): ?>
             <?php foreach ($usuarios as $usu): ?>
             <tr>
                 <td><?= htmlspecialchars($usu['id_usuario']) ?></td>
                 <td><?= htmlspecialchars($usu['nombre']) ?></td>
                 <td><?= htmlspecialchars($usu['correo']) ?></td>
-                <td><?= htmlspecialchars($usu['contrasena']) ?></td>
+                <td>••••••••</td>
                 <td><?= htmlspecialchars($usu['estado']) ?></td>
-                <td>
-              
-                </td>
             </tr>
             <?php endforeach; ?>
         <?php else: ?>
@@ -29,10 +32,3 @@
     <script src="js/script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-

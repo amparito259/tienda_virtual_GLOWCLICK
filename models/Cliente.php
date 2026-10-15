@@ -13,41 +13,39 @@ class Cliente {
     public function getAll()
     {
         try {
-              $sql = "SELECT id_cliente, nombre FROM clientes";
-              $consulta = $this->connection->query($sql);
-        return $consulta->fetchAll();
-        }catch (PDOException $e) {
-           echo "Error Mostrando clientes" .$e->getMessage();
+            $sql = "SELECT * FROM clientes";
+            $consulta = $this->connection->query($sql);
+            return $consulta->fetchAll();
+        } catch (PDOException $e) {
+            echo "Error Mostrando clientes: " . $e->getMessage();
+            return [];
         }
-      
     }
 
-    public function guardar($id_cliente, $nombre)
+    public function guardar($nombre)
     {
         try {
-            $sql = "INSERT INTO cliente (id_cliente, nombre) 
-            VALUES (:id_cliente, :nombre)";
+            $sql = "INSERT INTO clientes (nombre) VALUES (:nombre)";
             $consulta = $this->connection->prepare($sql);
-            $consulta->bindParam(":id_cliente", $id_cliente);
-            $consulta->bindParam(":nombre", $nombre);
+            $consulta->bindParam(":nombre", $nombre, PDO::PARAM_STR);
             $consulta->execute();
-            return true;
+
+            return $this->connection->lastInsertId();
         } catch (PDOException $e) {
-            echo "Error guardando cliente" . $e->getMessage();
+            echo "Error guardando cliente: " . $e->getMessage();
             return false;
         }
     }
-    
 
     public function getById($idCliente)
     {
         try {
-            $sql = "SELECT * FROM cliente WHERE idCliente = :idCliente";
+            $sql = "SELECT * FROM clientes WHERE id_cliente = :idCliente";
             $consulta = $this->connection->prepare($sql);
             $consulta->bindParam(":idCliente", $idCliente, PDO::PARAM_INT);
             $consulta->execute();
 
-            return $consulta->fetch(); // fetch single record
+            return $consulta->fetch();
         } catch (PDOException $e) {
             error_log("Error en getById de Cliente: " . $e->getMessage());
             return false;

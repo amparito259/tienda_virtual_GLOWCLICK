@@ -3,38 +3,46 @@
 require_once __DIR__ . "/../../models/Usuario.php";
 
 class UsuarioController {
+
     public function index(){
         try {
-            $modelusuario = new usuario();
-            $usuarios = $modelusuario->getAll();
+            $modelUsuario = new Usuario();
+            $usuarios = $modelUsuario->getAll();
 
-           require_once __DIR__ . '/../../views/usuarios/index.php';
+            require_once __DIR__ . '/../../views/usuarios/index.php';
         } catch (Exception $e) {
-            echo "Error en el controlador de Usuario" .$e->getMessage();
+            echo "Error en el controlador de Usuario: " . $e->getMessage();
         }
     }
 
-  public function crear(){
+    public function crear(){
         require_once __DIR__ . '/../../views/usuarios/crear.php';
     }
 
     public function guardar(){
-        $id_usuario=$_POST['id_usuario'];
-        $nombre=$_POST['nombre'];
-        $correo=$_POST['correo'];
-        $contrasena=$_POST['contrasena'];
-        $estado=$_POST['estado'];
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $nombre = trim($_POST['nombre'] ?? '');
+            $correo = trim($_POST['correo'] ?? '');
+            $contrasena = $_POST['contrasena'] ?? '';
+            $estado = trim($_POST['estado'] ?? 'Activo');
 
-        $modelUsuario = new Usuario();
-        $resultado = $modelUsuario->guardar($id_usuario, $nombre, $correo, $contrasena, $estado);
+            if (empty($nombre) || empty($correo) || empty($contrasena)) {
+                echo "Nombre, correo y contraseña son obligatorios.";
+                return;
+            }
 
-        if ($resultado) {
-            echo "Usuario guardado correctamente.";
-            $modelUsuario->getAll();
-        } else {
-            echo "Error al guardar el usuario.";
+            // Encriptar la contraseña por seguridad
+            $contrasenaHash = password_hash($contrasena, PASSWORD_BCRYPT);
+
+            $modelUsuario = new Usuario();
+            $resultado = $modelUsuario->guardar($nombre, $correo, $contrasenaHash, $estado);
+
+            if ($resultado) {
+                header("Location: /usuario");
+                exit();
+            } else {
+                echo "Error al guardar el usuario.";
+            }
         }
     }
-
-    
 }

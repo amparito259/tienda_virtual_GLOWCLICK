@@ -1,0 +1,100 @@
+/* Reset básico para márgenes y fuentes */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Fondo de la página y centrado del formulario */
+body {
+  background-color: #f4f7f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Tarjeta contenedora */
+.card {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 450px;
+}
+
+/* Título */
+h1 {
+  color: #2c3e50;
+  font-size: 1.5rem;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+/* Grupo de cada campo de entrada */
+.form-group {
+  margin-bottom: 18px;
+}
+
+/* Etiquetas (Labels) */
+label {
+  display: block;
+  margin-bottom: 6px;
+  color: #4a5568;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* Campos de texto y área de texto */
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: #2d3748;
+  transition: all 0.2s ease-in-out;
+  outline: none;
+}
+
+/* Efecto al hacer foco (clic) en un input o textarea */
+input[type="text"]:focus,
+textarea:focus {
+  border-color: #3182ce;
+  box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.15);
+}
+
+/* Permitir redimensionar el textarea solo verticalmente */
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Botón de envío */
+.btn-submit {
+  width: 100%;
+  padding: 12px;
+  background-color: #3182ce;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  margin-top: 10px;
+}
+
+/* Efecto al pasar el cursor por encima del botón */
+.btn-submit:hover {
+  background-color: #2b6cb0;
+}
+
+/* Efecto al hacer clic en el botón */
+.btn-submit:active {
+  transform: scale(0.98);
+}

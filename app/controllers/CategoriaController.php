@@ -3,6 +3,8 @@
 require_once __DIR__ . "/../../models/categoria.php";
 
 class CategoriaController {
+    public $modelCategoria;
+
     public function index(){
         try {
           $modelCategoria = new Categoria();
@@ -18,15 +20,14 @@ class CategoriaController {
     }
 
     public function guardar(){
-        $id_categoria=$_POST['id_categoria'];
         $nombre=$_POST['nombre'];
         $descripcion=$_POST['descripcion'];
 
         $modelCategoria = new Categoria();
-        $resultado=$modelCategoria->guardar($id_categoria, $nombre, $descripcion);
+        $resultado=$modelCategoria->guardar($nombre, $descripcion);
 
         if ($resultado) {
-            echo "Categoría guardada correctamente.";
+            echo "Categoría guardada correctamente."; 
             $modelCategoria->getAll();
         } else {
             echo "Error al guardar la categoría.";

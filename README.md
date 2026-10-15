@@ -8,3 +8,5 @@ Este sistema permite gestionar de manera interna el inventario de cosméticos (l
 
 Le agregamos en views un archivo llamado crear.php, y haci con las demas carpetas.
 
+## 15/10/2026
+## Permitió aplicar con éxito el patrón MVC (Modelo-Vista-Controlador) en PHP, conectando correctamente los formularios web con la lógica del controlador y las consultas seguras hacia la base de datos en MySQL. Las pruebas demostraron el funcionamiento integral del sistema, logrando registrar nuevos productos y reflejarlos de forma correcta tanto en la interfaz como en el servidor.

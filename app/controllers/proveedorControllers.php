@@ -3,6 +3,7 @@
 require_once __DIR__ . "/../../models/proveedor.php";
 
 class ProveedorController {
+
     public function index(){
         try {
             $modelProveedor = new Proveedor();
@@ -10,28 +11,34 @@ class ProveedorController {
 
             require_once __DIR__ . "/../../views/proveedor/index.php";
         } catch (Exception $e) {
-            echo "Error en el controlador de proveedor" .$e->getMessage();
+            echo "Error en el controlador de proveedor: " . $e->getMessage();
         }
     }
 
-   public function crear(){
+    public function crear(){
         require_once __DIR__ . '/../../views/proveedor/crear.php';
     }
 
     public function guardar(){
-        $id_proveedor = $_POST['id_proveedor'] ?? null;
-        $nombre = $_POST['nombre'] ?? null;
-        $ciudad = $_POST['ciudad'] ?? null;
-        $direccion = $_POST['direccion'] ?? null;
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $nombre = trim($_POST['nombre'] ?? '');
+            $ciudad = trim($_POST['ciudad'] ?? '');
+            $direccion = trim($_POST['direccion'] ?? '');
 
-        $modelProveedor = new Proveedor();
-        $resultado = $modelProveedor->guardar($id_proveedor, $nombre, $ciudad, $direccion);
+            if (empty($nombre)) {
+                echo "El nombre del proveedor es obligatorio.";
+                return;
+            }
 
-        if ($resultado) {
-            echo "Proveedor guardado correctamente.";
-            $modelProveedor->getAll();
-        } else {
-            echo "Error al guardar el proveedor.";
+            $modelProveedor = new Proveedor();
+            $resultado = $modelProveedor->guardar($nombre, $ciudad, $direccion);
+
+            if ($resultado) {
+                header("Location: /proveedor");
+                exit();
+            } else {
+                echo "Error al guardar el proveedor.";
+            }
         }
     }
 }

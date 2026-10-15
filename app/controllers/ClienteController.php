@@ -3,14 +3,15 @@
 require_once __DIR__ . "/../../models/Cliente.php";
 
 class ClienteController {
+
     public function index(){
         try {
-          $modelCliente = new Cliente();
-          $clientes = $modelCliente->getAll();
+            $modelCliente = new Cliente();
+            $clientes = $modelCliente->getAll();
 
             require_once __DIR__ . "/../../views/clientes/index.php";
         } catch (Exception $e) {
-            echo "Error en el controlador de cliente" .$e->getMessage();
+            echo "Error en el controlador de cliente: " . $e->getMessage();
         }
     }
 
@@ -19,17 +20,23 @@ class ClienteController {
     }
 
     public function guardar(){
-        $id_cliente=$_POST['id_cliente'];
-        $nombre=$_POST['nombre'];
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $nombre = trim($_POST['nombre'] ?? '');
 
-        $modelCliente = new Cliente();
-        $resultado=$modelCliente->guardar($id_cliente, $nombre);
+            if (empty($nombre)) {
+                echo "El nombre del cliente es obligatorio.";
+                return;
+            }
 
-        if ($resultado) {
-            echo "Cliente guardado correctamente.";
-            $modelCliente->getAll();
-        } else {
-            echo "Error al guardar el cliente.";
+            $modelCliente = new Cliente();
+            $resultado = $modelCliente->guardar($nombre);
+
+            if ($resultado) {
+                header("Location: /cliente");
+                exit();
+            } else {
+                echo "Error al guardar el cliente.";
+            }
         }
     }
 }

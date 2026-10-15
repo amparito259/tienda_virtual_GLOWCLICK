@@ -12,31 +12,35 @@ class Producto {
 
     public function getAll()
     {
-        $sql = "SELECT id_producto, nombre, precio, stock, id_categoria, id_proveedor FROM producto";
-        $consulta = $this->connection->query($sql);
-        return $consulta->fetchAll();
+        try {
+            $sql = "SELECT id_producto, nombre, precio, stock, id_categoria, id_proveedor FROM producto";
+            $consulta = $this->connection->query($sql);
+            return $consulta->fetchAll();
+        } catch (PDOException $e) {
+            echo "Error mostrando productos: " . $e->getMessage();
+            return [];
+        }
     }
 
-    public function guardar($id_producto, $nombre, $precio, $stock, $id_categoria, $id_proveedor)
+    public function guardar($nombre, $precio, $stock, $id_categoria, $id_proveedor)
     {
         try {
-            $sql = "INSERT INTO producto (id_producto, nombre, precio, stock, id_categoria, id_proveedor) 
-            VALUES (:id_producto, :nombre, :precio, :stock, :id_categoria, :id_proveedor)";
+            $sql = "INSERT INTO producto (nombre, precio, stock, id_categoria, id_proveedor) 
+                    VALUES (:nombre, :precio, :stock, :id_categoria, :id_proveedor)";
             $consulta = $this->connection->prepare($sql);
-            $consulta->bindParam(":id_producto", $id_producto);
             $consulta->bindParam(":nombre", $nombre);
             $consulta->bindParam(":precio", $precio);
             $consulta->bindParam(":stock", $stock);
             $consulta->bindParam(":id_categoria", $id_categoria);
             $consulta->bindParam(":id_proveedor", $id_proveedor);
             $consulta->execute();
-            return true;
+
+            return $this->connection->lastInsertId();
         } catch (PDOException $e) {
-            echo "Error guardando producto" . $e->getMessage();
+            echo "Error guardando producto: " . $e->getMessage();
             return false;
         }
     }
-    
 
     public function getById($idProducto)
     {
@@ -46,7 +50,7 @@ class Producto {
             $consulta->bindParam(":idProducto", $idProducto, PDO::PARAM_INT);
             $consulta->execute();
 
-            return $consulta->fetch(); // fetch single record
+            return $consulta->fetch();
         } catch (PDOException $e) {
             error_log("Error en getById de Producto: " . $e->getMessage());
             return false;
