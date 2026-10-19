@@ -31,7 +31,6 @@ class ProductoController {
                 echo "El nombre del producto es obligatorio.";
                 return;
             }
-
             $modelProducto = new Producto();
             $resultado = $modelProducto->guardar($nombre, $precio, $stock, $id_categoria, $id_proveedor);
 
@@ -42,5 +41,11 @@ class ProductoController {
                 echo "Error al guardar el producto.";
             }
         }
+    }
+    public function editar(){
+        $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+        $modelProducto = new Producto();
+        $producto = $modelProducto->getById($id);
+        require_once __DIR__ . '/../../views/productos/editar.php';
     }
 }

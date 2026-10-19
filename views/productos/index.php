@@ -15,6 +15,7 @@
             <th>Stock</th>
             <th>id_Categoría</th>
             <th>id_proveedor</th>
+            <th>Acciones</th>
         </tr>
         <?php if (!empty($productos)): ?>
             <?php foreach ($productos as $prod): ?>
@@ -25,12 +26,16 @@
                 <td><?= htmlspecialchars($prod['stock']) ?></td>
                 <td><?= htmlspecialchars($prod['id_categoria']) ?></td>
                 <td><?= htmlspecialchars($prod['id_proveedor']) ?></td>
+                <td>
+                    <a href="/productos/editar?id=<?= $prod['id_producto'] ?>">Editar</a>
+                </td>
             </tr>
             <?php endforeach; ?>
         <?php else: ?>
-            <tr><td colspan="6">No hay productos disponibles en GLOWCLICK.</td></tr>
+            <tr><td colspan="7">No hay productos disponibles en GLOWCLICK.</td></tr>
         <?php endif; ?>
     </table>
     <script src="js/script.js"></script>
+      
 </body>
 </html>

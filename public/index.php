@@ -29,6 +29,8 @@ require_once __DIR__ . "/../app/controllers/VentaController.php";
 $method = $_SERVER['REQUEST_METHOD']; 
 $uri = $_SERVER['REQUEST_URI'];
 
+$ruta=parse_url($uri, PHP_URL_PATH);
+
 //CATEGORIAS
 if ($method === 'GET' && $uri === "/categoria"){
     $categoriaController = new CategoriaController();
@@ -70,6 +72,12 @@ if ($method === 'GET' && $uri === "/producto/crear"){
 if ($method === 'POST' && $uri === "/producto"){
     $ProductoController = new ProductoController();
     $ProductoController->guardar();
+}
+ 
+//EDITAR PRODUCTOS 19/10/26
+if ($ruta === "/producto/editar" && $method === "GET"){
+    $productoController = new ProductoController();
+    $productoController->editar();
 }
 
 
