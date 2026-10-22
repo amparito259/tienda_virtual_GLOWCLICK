@@ -56,4 +56,29 @@ class Producto {
             return false;
         }
     }
+//<-- Agregando el método actualizar 19/10/2026 -->
+    public function actualizar($id_producto,$nombre, $precio, $stock, $id_categoria, $id_proveedor){
+      try {
+            $sql = "UPDATE producto 
+                    SET nombre=:nombre, 
+                        precio=:precio, 
+                        stock=:stock, 
+                        id_categoria=:id_categoria, 
+                        id_proveedor=:id_proveedor
+                    WHERE id_producto=:id_producto";
+            $consulta = $this->connection->prepare($sql);
+            $consulta->bindParam(":id_producto", $id_producto);
+            $consulta->bindParam(":nombre", $nombre);
+            $consulta->bindParam(":precio", $precio);
+            $consulta->bindParam(":stock", $stock);
+            $consulta->bindParam(":id_categoria", $id_categoria);
+            $consulta->bindParam(":id_proveedor", $id_proveedor);
+            
+            return $consulta->execute();;
+        } catch (PDOException $e) {
+            echo "Error actualizar producto: " . $e->getMessage();
+            return false;
+        }
+     
+    }
 }

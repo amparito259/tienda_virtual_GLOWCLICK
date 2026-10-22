@@ -54,4 +54,26 @@ class Proveedor {
             return false;
         }
     }
+
+    //<-- Agregando el método actualizar 22/10/2026 -->
+    public function actualizar($id_proveedor, $nombre, $ciudad, $direccion){
+      try {
+            $sql = "UPDATE proveedor 
+                    SET nombre=:nombre, 
+                        ciudad=:ciudad, 
+                        direccion=:direccion 
+                    WHERE id_proveedor=:id_proveedor";
+            $consulta = $this->connection->prepare($sql);
+            $consulta->bindParam(":id_proveedor", $id_proveedor);
+            $consulta->bindParam(":nombre", $nombre);
+            $consulta->bindParam(":ciudad", $ciudad);
+            $consulta->bindParam(":direccion", $direccion);
+
+            return $consulta->execute();;
+        } catch (PDOException $e) {
+            echo "Error actualizar el proveedor: " . $e->getMessage();
+            return false;
+        }
+     
+    }
 }

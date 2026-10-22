@@ -42,10 +42,37 @@ class ProductoController {
             }
         }
     }
-    public function editar(){
-        $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
-        $modelProducto = new Producto();
-        $producto = $modelProducto->getById($id);
-        require_once __DIR__ . '/../../views/productos/editar.php';
+
+    //<-- Agregando el método editar 19/10/2026 -->
+   public function editar(){
+    $modelProducto = new Producto();
+    
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $id_producto  = filter_input(INPUT_POST, 'id_producto', FILTER_VALIDATE_INT);
+        $nombre       = filter_input(INPUT_POST, 'nombre', FILTER_DEFAULT);
+        $precio       = filter_input(INPUT_POST, 'precio', FILTER_VALIDATE_FLOAT); // <-- Aquí decía 'nombre' en vez de 'precio'
+        $stock        = filter_input(INPUT_POST, 'stock', FILTER_VALIDATE_INT);
+        $id_categoria = filter_input(INPUT_POST, 'id_categoria', FILTER_VALIDATE_INT);
+        $id_proveedor = filter_input(INPUT_POST, 'id_proveedor', FILTER_VALIDATE_INT);
+
+        if (empty($nombre)) {
+            echo "El nombre del producto es obligatorio.";
+            return;
+        }
+        
+        $actualizado = $modelProducto->actualizar($id_producto, $nombre, $precio, $stock, $id_categoria, $id_proveedor);
+
+        if ($actualizado) {
+            header("Location: /producto");
+            exit();
+        } else {
+            echo "Error al actualizar el producto.";
+        }
     }
+    
+    $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+    $productos = $modelProducto->getById($id);
+    require_once __DIR__ . '/../../views/productos/editar.php';
+    }
+
 }

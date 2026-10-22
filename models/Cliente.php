@@ -51,4 +51,21 @@ class Cliente {
             return false;
         }
     }
+
+    //<-- Agregando el método actualizar 22/10/2026 -->
+    public function actualizar($id_cliente, $nombre){
+        try {
+            $sql = "UPDATE clientes 
+                    SET nombre=:nombre 
+                    WHERE id_cliente=:id_cliente";
+            $consulta = $this->connection->prepare($sql);
+            $consulta->bindParam(":id_cliente", $id_cliente);
+            $consulta->bindParam(":nombre", $nombre);
+
+            return $consulta->execute();
+        } catch (PDOException $e) {
+            echo "Error actualizando cliente: " . $e->getMessage();
+            return false;
+        }
+    }
 }

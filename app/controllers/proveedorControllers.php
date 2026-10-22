@@ -41,4 +41,33 @@ class ProveedorController {
             }
         }
     }
+
+    //<-- Agregando el método editar 22/10/2026 -->
+   public function editar(){
+    $modelproveedor = new Proveedor();
+    
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $id_proveedor  = filter_input(INPUT_POST, 'id_proveedor', FILTER_VALIDATE_INT);
+        $nombre         = filter_input(INPUT_POST, 'nombre', FILTER_DEFAULT);
+        $ciudad   = filter_input(INPUT_POST, 'ciudad', FILTER_DEFAULT);
+        $direccion   = filter_input(INPUT_POST, 'direccion', FILTER_DEFAULT);
+        if (empty($nombre)) {
+            echo "El nombre del proveedor es obligatorio.";
+            return;
+        }
+
+        $actualizado = $modelproveedor->actualizar($id_proveedor, $nombre, $ciudad, $direccion);
+
+        if ($actualizado) {
+            header("Location: /proveedor");
+            exit();
+        } else {
+            echo "Error al actualizar la proveedor.";
+        }
+    }
+
+   $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+    $proveedor = $modelproveedor->getById($id);
+    require_once __DIR__ . '/../../views/proveedor/editar.php';
+    }
 }

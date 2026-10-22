@@ -13,6 +13,7 @@
             <th>ID Cliente</th>
             <th>Fecha</th>
             <th>Total</th>
+             <th>Acciones</th>
         </tr>
         <?php if (!empty($ventas)): ?>
             <?php foreach ($ventas as $ven): ?>
@@ -21,6 +22,9 @@
                 <td><?= htmlspecialchars($ven['id_cliente']) ?></td>
                 <td><?= htmlspecialchars($ven['fecha']) ?></td>
                 <td>$<?= htmlspecialchars(number_format($ven['total'], 2)) ?></td>
+                <td>
+                     <a href="/ventas/editar?id=<?= htmlspecialchars($ven['id_venta']); ?>">Guardar</a>
+                </td>
             </tr>
             <?php endforeach; ?>
         <?php else: ?>

@@ -39,18 +39,38 @@ class Categoria {
     }
 
     
-    public function getById($idCategoria)
-    {
-        try {
-            $sql = "SELECT * FROM categoria WHERE idCategoria = :idCategoria";
-            $consulta = $this->connection->prepare($sql);
-            $consulta->bindParam(":idCategoria", $idCategoria, PDO::PARAM_INT);
-            $consulta->execute();
+    public function getById($id_categoria)
+{
+    try {
+        $sql = "SELECT * FROM categoria WHERE id_categoria = :id_categoria";
+        $consulta = $this->connection->prepare($sql);
+        $consulta->bindParam(":id_categoria", $id_categoria, PDO::PARAM_INT);
+        $consulta->execute();
 
-            return $consulta->fetch(); // fetch single record
+        return $consulta->fetch(); 
+    } catch (PDOException $e) {
+        error_log("Error en getById de Categoria: " . $e->getMessage());
+        return false;
+    }
+}
+
+//<-- Agregando el método actualizar 22/10/2026 -->
+    public function actualizar($id_categoria, $nombre, $descripcion){
+      try {
+            $sql = "UPDATE categoria 
+                    SET nombre=:nombre, 
+                        descripcion=:descripcion 
+                    WHERE id_categoria=:id_categoria";
+            $consulta = $this->connection->prepare($sql);
+            $consulta->bindParam(":id_categoria", $id_categoria);
+            $consulta->bindParam(":nombre", $nombre);
+            $consulta->bindParam(":descripcion", $descripcion);
+
+            return $consulta->execute();;
         } catch (PDOException $e) {
-            error_log("Error en getById de Categoria: " . $e->getMessage());
+            echo "Error actualizar categoría: " . $e->getMessage();
             return false;
         }
+     
     }
 }

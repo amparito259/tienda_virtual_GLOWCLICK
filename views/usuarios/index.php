@@ -14,6 +14,7 @@
             <th>Correo</th>
             <th>Contraseña</th>
             <th>Estado</th>
+            <th>Acciones</th>
         </tr>
         <?php if (!empty($usuarios)): ?>
             <?php foreach ($usuarios as $usu): ?>
@@ -23,6 +24,9 @@
                 <td><?= htmlspecialchars($usu['correo']) ?></td>
                 <td>••••••••</td>
                 <td><?= htmlspecialchars($usu['estado']) ?></td>
+                <td>
+                     <a href="/usuarios/editar?id=<?= htmlspecialchars($usu['id_usuario']); ?>">Guardar</a>
+                </td>
             </tr>
             <?php endforeach; ?>
         <?php else: ?>

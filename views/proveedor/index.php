@@ -13,6 +13,7 @@
             <th>Nombre</th>
             <th>Ciudad</th>
             <th>Dirección</th>
+            <th>Acciones</th>
         </tr>
         <?php if (!empty($proveedor)): ?>
             <?php foreach ($proveedor as $prov): ?>
@@ -21,7 +22,11 @@
                 <td><?= htmlspecialchars($prov['nombre']) ?></td>
                 <td><?= htmlspecialchars($prov['ciudad']) ?></td>
                 <td><?= htmlspecialchars($prov['direccion']) ?></td>
+                <td>
+                  <a href="/proveedor/editar?id=<?= htmlspecialchars($prov['id_proveedor']); ?>">Guardar</a>
+                </td>
             </tr>
+          
             <?php endforeach; ?>
         <?php else: ?>
             <tr><td colspan="4">No hay proveedores registrados.</td></tr>

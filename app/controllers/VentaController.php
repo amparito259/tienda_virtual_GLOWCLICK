@@ -41,4 +41,34 @@ class VentaController {
             }
         }
     }
+
+     //<-- Agregando el método editar 19/10/2026 -->
+   public function editar(){
+    $modelventa = new Venta();
+    
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $id_ventas  = filter_input(INPUT_POST, 'id_ventas', FILTER_VALIDATE_INT);
+        $id_cliente       = filter_input(INPUT_POST, 'id_cliente', FILTER_DEFAULT);
+        $fecha      = filter_input(INPUT_POST, 'fecha', FILTER_VALIDATE_FLOAT);
+        $total     = filter_input(INPUT_POST, 'total', FILTER_VALIDATE_INT);
+
+        if (empty($nombre)) {
+            echo "El nombre de la venta es obligatorio.";
+            return;
+        }
+        
+        $actualizado = $modelventa->actualizar($id_ventas, $id_cliente, $fecha, $total);
+
+        if ($actualizado) {
+            header("Location: /venta");
+            exit();
+        } else {
+            echo "Error al actualizar la venta.";
+        }
+    }
+    
+    $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+    $productos = $modelventa->getById($id);
+    require_once __DIR__ . '/../../views/ventas/editar.php';
+    }
 }

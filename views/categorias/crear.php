@@ -1,7 +1,6 @@
-<link rel="stylesheet" href="tienda_virtual_GLOWCLICK/public/css/categoria/crear.css">
 <h1 style="color: #ff0f0f;">Lista de Categorias</h1>
 
-<form action="/categoria" method="POST">
+<form action="/categoria/guardar" method="POST">
 
     <label for="nombre">nombre:</label>
     <input type="text" 

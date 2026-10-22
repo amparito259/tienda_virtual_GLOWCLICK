@@ -54,4 +54,26 @@ class Venta {
             return false;
         }
     }
+
+
+        //<-- Agregando el método actualizar 22/10/2026 -->
+    public function actualizar($id_ventas, $id_cliente, $fecha, $total){
+      try {
+            $sql = "UPDATE ventas
+                    SET fecha=:fecha, 
+                        total=:total 
+                    WHERE id_ventas=:id_ventas";
+            $consulta = $this->connection->prepare($sql);
+            $consulta->bindParam(":id_ventas", $id_ventas);
+            $consulta->bindParam(":id_cliente", $id_cliente);
+            $consulta->bindParam(":fecha", $fecha);
+            $consulta->bindParam(":total", $total);
+
+            return $consulta->execute();;
+        } catch (PDOException $e) {
+            echo "Error actualizar ventas: " . $e->getMessage();
+            return false;
+        }
+     
+    }
 }

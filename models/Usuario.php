@@ -55,4 +55,28 @@ class Usuario {
             return false;
         }
     }
+
+    //<-- Agregando el método actualizar 22/10/2026 -->
+    public function actualizar($id_usuario, $nombre, $correo, $contraseña, $estado){
+      try {
+            $sql = "UPDATE usuario
+                    SET nombre=:nombre, 
+                        correo=:correo, 
+                        contrasena=:contrasena, 
+                        estado=:estado 
+                    WHERE id_usuario=:id_usuario";
+            $consulta = $this->connection->prepare($sql);
+            $consulta->bindParam(":id_usuario", $id_usuario);
+            $consulta->bindParam(":nombre", $nombre);
+            $consulta->bindParam(":correo", $correo);
+           $consulta->bindParam(":contrasena", $contrasena); 
+            $consulta->bindParam(":estado", $estado);
+
+            return $consulta->execute();;
+        } catch (PDOException $e) {
+            echo "Error actualizar usuario: " . $e->getMessage();
+            return false;
+        }
+     
+    }
 }

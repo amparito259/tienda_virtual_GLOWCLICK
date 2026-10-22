@@ -45,6 +45,17 @@ if ($method === 'POST' && $uri === "/categoria"){
     $categoriaController->guardar();
 }
 
+//ACTUALIZAR categoria 22/10/26
+if ($ruta === "/categoria/editar" && $method === "POST"){
+    $categoriaController = new CategoriaController();
+    $categoriaController->editar();
+}
+//editar categoria 22/10/26
+if ($ruta === "/categoria/editar" && $method === "GET"){
+    $categoriaController = new CategoriaController();
+    $categoriaController->editar();
+}
+
 //CLIENTES
 if ($method === 'GET' && $uri === "/cliente"){
     $clienteController = new ClienteController();
@@ -57,6 +68,18 @@ if ($method === 'GET' && $uri === "/cliente/crear"){
 if ($method === 'POST' && $uri === "/cliente"){
     $clienteController = new ClienteController();
     $clienteController->guardar();
+}
+
+//ACTUALIZAR cliente 22/10/26
+if ($ruta === "/cliente/editar" && $method === "POST"){
+    $clienteController = new ClienteController();
+    $clienteController->editar();
+}
+
+//EDITAR cliente 22/10/26
+if ($ruta === "/cliente/editar" && $method === "GET"){
+    $clienteController = new ClienteController();
+    $clienteController->editar();
 }
 
 //PRODUCTOS
@@ -73,8 +96,15 @@ if ($method === 'POST' && $uri === "/producto"){
     $ProductoController = new ProductoController();
     $ProductoController->guardar();
 }
- 
-//EDITAR PRODUCTOS 19/10/26
+
+
+//ACTUALIZAR producto 19/10/26
+if ($ruta === "/producto/editar" && $method === "POST"){
+    $productoController = new ProductoController();
+    $productoController->editar();
+}
+
+//EDITAR producto 19/10/26
 if ($ruta === "/producto/editar" && $method === "GET"){
     $productoController = new ProductoController();
     $productoController->editar();
@@ -96,6 +126,18 @@ if ($method === 'POST' && $uri === "/proveedor"){
     $ProveedorController->guardar();
 }
 
+//ACTUALIZAR proveedor 22/10/26
+if ($ruta === "/proveedor/editar" && $method === "POST"){
+    $proveedorController = new ProveedorController();
+    $proveedorController->editar();
+}
+
+//editar proveedor 22/10/2026
+if ($ruta === "/proveedor/editar" && $method === "GET"){
+    $proveedorController = new ProveedorController();
+    $proveedorController->editar();
+}
+
 //USUARIOS
 
 if ($method === 'GET' && $uri === "/usuario"){
@@ -111,8 +153,20 @@ if ($method === 'POST' && $uri === "/usuario"){
     $UsuarioController->guardar();
 }
 
-//VENTAS
+//editar usuario 22/10/2026
+if ($ruta === "/usuarios/editar" && $method === "POST"){
+    $usuarioController = new UsuarioController();
+    $usuarioController->editar();
+}
 
+//editar usuario 22/10/2026
+if ($ruta === "/usuarios/editar" && $method === "GET"){
+    $usuarioController = new UsuarioController();
+    $usuarioController->editar();
+}
+
+
+//VENTAS
 
 if ($method === 'GET' && $uri === "/venta"){
     $VentaController = new VentaController();
@@ -125,6 +179,18 @@ if ($method === 'GET' && $uri === "/venta/crear"){
 if ($method === 'POST' && $uri === "/venta"){
     $VentaController = new VentaController();
     $VentaController->guardar();
+}
+
+//editar ventas 22/10/2026
+if ($ruta === "/ventas/editar" && $method === "POST"){
+    $ventasController = new VentaController();
+    $ventasController->editar();
+}
+
+//editar ventas 22/10/2026
+if ($ruta === "/ventas/editar" && $method === "GET"){
+    $ventasController = new VentaController();
+    $ventasController->editar();
 }
 
 ?>

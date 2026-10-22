@@ -45,4 +45,35 @@ class UsuarioController {
             }
         }
     }
+
+     //<-- Agregando el método editar 19/10/2026 -->
+   public function editar(){
+    $modelusuarios = new Usuario();
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $id_usuario = filter_input(INPUT_POST, 'id_usuario', FILTER_VALIDATE_INT);
+        $nombre     = filter_input(INPUT_POST, 'nombre', FILTER_DEFAULT);
+        $correo     = filter_input(INPUT_POST, 'correo', FILTER_DEFAULT); // <-- Cambiado
+        $contrasena = filter_input(INPUT_POST, 'contrasena', FILTER_DEFAULT); // <-- Cambiado sin tilde y FILTER_DEFAULT
+        $estado     = filter_input(INPUT_POST, 'estado', FILTER_DEFAULT);     // <-- Cambiado a FILTER_DEFAULT
+
+        if (empty($nombre)) {
+            echo "El nombre del usuario es obligatorio.";
+            return;
+        }
+
+        $actualizado = $modelusuarios->actualizar($id_usuario, $nombre, $correo, $contrasena, $estado);
+
+        if ($actualizado) {
+            header("Location: /usuario");
+            exit();
+        } else {
+            echo "Error al actualizar el usuario.";
+        }
+    }
+
+    $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+    $usuario = $modelusuarios->getById($id); // <-- Cambiado de $productos a $usuario (singular)
+    require_once __DIR__ . '/../../views/usuarios/editar.php';
+}
 }

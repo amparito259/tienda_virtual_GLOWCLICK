@@ -39,4 +39,32 @@ class ClienteController {
             }
         }
     }
+
+    //<-- Agregando el método editar 22/10/2026 -->
+   public function editar(){
+    $modelCliente = new Cliente();
+    
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $id_cliente  = filter_input(INPUT_POST, 'id_cliente', FILTER_VALIDATE_INT);
+        $nombre      = filter_input(INPUT_POST, 'nombre', FILTER_DEFAULT);
+
+        if (empty($nombre)) {
+            echo "El nombre del cliente es obligatorio.";
+            return;
+        }
+
+        $actualizado = $modelCliente->actualizar($id_cliente, $nombre);
+
+        if ($actualizado) {
+            header("Location: /cliente");
+            exit();
+        } else {
+            echo "Error al actualizar el cliente.";
+        }
+    }
+    
+    $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+    $clientes = $modelCliente->getById($id);
+    require_once __DIR__ . '/../../views/clientes/editar.php';
+    }
 }
