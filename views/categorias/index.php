@@ -13,13 +13,18 @@
         <th>Acciones</th></tr>
 
         <?php if (!empty($categorias)): ?>
-            <?php foreach ($categorias as $prod): ?>
+            <?php foreach ($categorias as $cat): ?>
             <tr>
-                <td><?= $prod['id_categoria'] ?></td>
-                <td><?= $prod['nombre'] ?></td>
-                <td><?= $prod['descripcion'] ?></td>
+                <td><?= $cat['id_categoria'] ?></td>
+                <td><?= $cat['nombre'] ?></td>
+                <td><?= $cat['descripcion'] ?></td>
                 <td>
-                    <a href="/categoria/editar?id=<?= htmlspecialchars($prod['id_categoria']) ?>">Guardar</a>
+                    <a href="/categoria/editar?id=<?= htmlspecialchars($cat['id_categoria']) ?>" style="color: #c748fa;" >Editar</a>
+                    <form action="/categoria/eliminar" method="POST" onsubmit="return confirm('Deseas eliminar la categoria?')">
+                    <input type="hidden" name="id_categoria" value="<?= $cat['id_categoria']  ?>">
+                    <button type="submit">Eliminar</button>
+                    </form>
+    
                 </td>
             </tr>
             <?php endforeach; ?>

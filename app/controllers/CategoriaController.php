@@ -66,4 +66,23 @@ class CategoriaController
         $categorias = $modelCategoria->getById($id);
         require_once __DIR__ . '/../../views/categorias/editar.php';
     }
+
+
+    //<-- agregando el metodo eliminar 26/10/2026 -->
+     public function eliminar() {
+     $id_categoria = filter_input(INPUT_POST, 'id_categoria', FILTER_VALIDATE_INT);
+     echo $id_categoria;
+
+
+    if ($id_categoria) {
+        $modelo = new Categoria();
+        $resultado=$modelo->eliminar($id_categoria);
+        var_dump($resultado);
+       
+    } else {
+        echo"Ocurrio un error eliminando la categoria";
+    }
+    return $this->index();
+}
+
 }

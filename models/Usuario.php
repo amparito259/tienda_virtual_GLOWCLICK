@@ -57,7 +57,7 @@ class Usuario {
     }
 
     //<-- Agregando el método actualizar 22/10/2026 -->
-    public function actualizar($id_usuario, $nombre, $correo, $contraseña, $estado){
+    public function actualizar($id_usuario, $nombre, $correo, $contrasena, $estado){
       try {
             $sql = "UPDATE usuario
                     SET nombre=:nombre, 
@@ -69,10 +69,10 @@ class Usuario {
             $consulta->bindParam(":id_usuario", $id_usuario);
             $consulta->bindParam(":nombre", $nombre);
             $consulta->bindParam(":correo", $correo);
-           $consulta->bindParam(":contrasena", $contrasena); 
+           $consulta->bindParam(":contrasena", $contrasena);
             $consulta->bindParam(":estado", $estado);
 
-            return $consulta->execute();;
+            return $consulta->execute();
         } catch (PDOException $e) {
             echo "Error actualizar usuario: " . $e->getMessage();
             return false;

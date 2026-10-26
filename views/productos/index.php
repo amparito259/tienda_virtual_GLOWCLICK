@@ -27,7 +27,7 @@
                 <td><?= htmlspecialchars($prod['id_categoria']) ?></td>
                 <td><?= htmlspecialchars($prod['id_proveedor']) ?></td>
                 <td>
-                    <a href="/producto/editar?id=<?= htmlspecialchars($prod['id_producto']); ?>">Guardar</a>
+                    <a href="/producto/editar?id=<?= htmlspecialchars($prod['id_producto']); ?>">Editar</a>
                 </td>
             </tr>
             <?php endforeach; ?>

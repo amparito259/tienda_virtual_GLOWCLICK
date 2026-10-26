@@ -23,7 +23,7 @@
                 <td><?= htmlspecialchars($ven['fecha']) ?></td>
                 <td>$<?= htmlspecialchars(number_format($ven['total'], 2)) ?></td>
                 <td>
-                     <a href="/ventas/editar?id=<?= htmlspecialchars($ven['id_venta']); ?>">Guardar</a>
+                     <a href="/ventas/editar?id=<?= htmlspecialchars($ven['id_venta']); ?>">Editar</a>
                 </td>
             </tr>
             <?php endforeach; ?>

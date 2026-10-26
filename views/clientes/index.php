@@ -19,7 +19,7 @@
                 <td><?= htmlspecialchars($cli['id_cliente']) ?></td>
                 <td><?= htmlspecialchars($cli['nombre']) ?></td>
                 <td>
-                    <a href="/cliente/editar?id=<?= htmlspecialchars($cli['id_cliente']) ?>">Guardar</a>
+                    <a href="/cliente/editar?id=<?= htmlspecialchars($cli['id_cliente']) ?>">Editar</a>
                 </td>
             </tr>
             

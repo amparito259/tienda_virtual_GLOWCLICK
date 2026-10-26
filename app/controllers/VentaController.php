@@ -47,17 +47,17 @@ class VentaController {
     $modelventa = new Venta();
     
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $id_ventas  = filter_input(INPUT_POST, 'id_ventas', FILTER_VALIDATE_INT);
-        $id_cliente       = filter_input(INPUT_POST, 'id_cliente', FILTER_DEFAULT);
-        $fecha      = filter_input(INPUT_POST, 'fecha', FILTER_VALIDATE_FLOAT);
-        $total     = filter_input(INPUT_POST, 'total', FILTER_VALIDATE_INT);
+        $id_venta   = filter_input(INPUT_POST, 'id_venta', FILTER_VALIDATE_INT);
+        $id_cliente = filter_input(INPUT_POST, 'id_cliente', FILTER_VALIDATE_INT);
+        $fecha      = filter_input(INPUT_POST, 'fecha', FILTER_DEFAULT);
+        $total      = filter_input(INPUT_POST, 'total', FILTER_VALIDATE_FLOAT);
 
-        if (empty($nombre)) {
-            echo "El nombre de la venta es obligatorio.";
+        if (empty($total)) {
+            echo "El total de la venta es obligatorio.";
             return;
         }
         
-        $actualizado = $modelventa->actualizar($id_ventas, $id_cliente, $fecha, $total);
+        $actualizado = $modelventa->actualizar($id_venta, $id_cliente, $fecha, $total);
 
         if ($actualizado) {
             header("Location: /venta");
@@ -68,7 +68,7 @@ class VentaController {
     }
     
     $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
-    $productos = $modelventa->getById($id);
+    $ventas = $modelventa->getById($id); 
     require_once __DIR__ . '/../../views/ventas/editar.php';
     }
 }

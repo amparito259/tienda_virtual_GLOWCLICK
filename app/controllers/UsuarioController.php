@@ -62,6 +62,7 @@ class UsuarioController {
             return;
         }
 
+
         $actualizado = $modelusuarios->actualizar($id_usuario, $nombre, $correo, $contrasena, $estado);
 
         if ($actualizado) {
@@ -73,7 +74,7 @@ class UsuarioController {
     }
 
     $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
-    $usuario = $modelusuarios->getById($id); // <-- Cambiado de $productos a $usuario (singular)
+    $usuario = $modelusuarios->getById($id); 
     require_once __DIR__ . '/../../views/usuarios/editar.php';
-}
+    } 
 }

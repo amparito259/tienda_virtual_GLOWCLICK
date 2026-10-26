@@ -25,7 +25,7 @@
                 <td>••••••••</td>
                 <td><?= htmlspecialchars($usu['estado']) ?></td>
                 <td>
-                     <a href="/usuarios/editar?id=<?= htmlspecialchars($usu['id_usuario']); ?>">Guardar</a>
+                   <a href="/usuarios/editar?id=<?= htmlspecialchars($usu['id_usuario']); ?>">Editar</a>
                 </td>
             </tr>
             <?php endforeach; ?>

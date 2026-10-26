@@ -57,23 +57,24 @@ class Venta {
 
 
         //<-- Agregando el método actualizar 22/10/2026 -->
-    public function actualizar($id_ventas, $id_cliente, $fecha, $total){
-      try {
-            $sql = "UPDATE ventas
-                    SET fecha=:fecha, 
-                        total=:total 
-                    WHERE id_ventas=:id_ventas";
-            $consulta = $this->connection->prepare($sql);
-            $consulta->bindParam(":id_ventas", $id_ventas);
-            $consulta->bindParam(":id_cliente", $id_cliente);
-            $consulta->bindParam(":fecha", $fecha);
-            $consulta->bindParam(":total", $total);
+ public function actualizar($id_venta, $id_cliente, $fecha, $total) {
+    try {
+        $sql = "UPDATE ventas 
+                SET id_cliente = :id_cliente, 
+                    fecha = :fecha, 
+                    total = :total 
+                WHERE id_venta = :id_venta";
+                
+        $consulta = $this->connection->prepare($sql);
+        $consulta->bindParam(":id_venta", $id_venta, PDO::PARAM_INT);
+        $consulta->bindParam(":id_cliente", $id_cliente, PDO::PARAM_INT);
+        $consulta->bindParam(":fecha", $fecha);
+        $consulta->bindParam(":total", $total);
 
-            return $consulta->execute();;
-        } catch (PDOException $e) {
-            echo "Error actualizar ventas: " . $e->getMessage();
-            return false;
-        }
-     
+        return $consulta->execute();
+    } catch (PDOException $e) {
+        echo "Error actualizar ventas: " . $e->getMessage();
+        return false;
     }
+}
 }

@@ -66,11 +66,25 @@ class Categoria {
             $consulta->bindParam(":nombre", $nombre);
             $consulta->bindParam(":descripcion", $descripcion);
 
-            return $consulta->execute();;
+            return $consulta->execute();
         } catch (PDOException $e) {
             echo "Error actualizar categoría: " . $e->getMessage();
             return false;
         }
      
     }
+    
+//<-- agregamos el metodo eliminar 26/10/2026 -->
+    public function eliminar($categoria) {
+    try {
+        $sql = "DELETE FROM categoria
+         WHERE id_categoria = :id_categoria";
+        $consulta = $this->connection->prepare($sql);
+        $consulta->bindParam(":id_categoria", $categoria);
+        
+        return $consulta->execute();
+    } catch (PDOException $e) {
+        return "Error al eliminar: " . $e->getMessage();
+    }
+}
 }

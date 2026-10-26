@@ -23,7 +23,7 @@
                 <td><?= htmlspecialchars($prov['ciudad']) ?></td>
                 <td><?= htmlspecialchars($prov['direccion']) ?></td>
                 <td>
-                  <a href="/proveedor/editar?id=<?= htmlspecialchars($prov['id_proveedor']); ?>">Guardar</a>
+                  <a href="/proveedor/editar?id=<?= htmlspecialchars($prov['id_proveedor']); ?>">Editar</a>
                 </td>
             </tr>
           

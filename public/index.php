@@ -55,6 +55,11 @@ if ($ruta === "/categoria/editar" && $method === "GET"){
     $categoriaController = new CategoriaController();
     $categoriaController->editar();
 }
+// elinimar categoria 26/10/2026
+if ($uri === "/categoria/eliminar" && $method === "POST"){
+    $categoriaController = new CategoriaController();
+    $categoriaController->eliminar();
+}
 
 //CLIENTES
 if ($method === 'GET' && $uri === "/cliente"){
@@ -153,7 +158,7 @@ if ($method === 'POST' && $uri === "/usuario"){
     $UsuarioController->guardar();
 }
 
-//editar usuario 22/10/2026
+//actualizar usuario 22/10/2026
 if ($ruta === "/usuarios/editar" && $method === "POST"){
     $usuarioController = new UsuarioController();
     $usuarioController->editar();
