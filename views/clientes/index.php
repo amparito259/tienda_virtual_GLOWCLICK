@@ -2,7 +2,6 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
     <h1 style="color: #ff0f0f;">Clientes</h1>

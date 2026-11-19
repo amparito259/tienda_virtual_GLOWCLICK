@@ -4,7 +4,7 @@ require_once __DIR__ . "/../../models/producto.php";
 
 class ProductoController {
 
-    public function index(){
+    public function listar(){
         try {
             $modelProducto = new Producto();
             $productos = $modelProducto->getAll();
@@ -90,6 +90,6 @@ class ProductoController {
     } else {
         echo"Ocurrio un error eliminando en producto";
     }
-    return $this->index();
+    return $this->listar();
 }
 }

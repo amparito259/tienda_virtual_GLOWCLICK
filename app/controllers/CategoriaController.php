@@ -6,7 +6,7 @@ class CategoriaController
 {
     public $modelCategoria;
 
-    public function index()
+    public function listar()
     {
         try {
             $modelCategoria = new Categoria();

@@ -4,7 +4,7 @@ require_once __DIR__ . "/../../models/proveedor.php";
 
 class ProveedorController {
 
-    public function index(){
+    public function listar(){
         try {
             $modelProveedor = new Proveedor();
             $proveedor = $modelProveedor->getAll();
@@ -86,6 +86,6 @@ class ProveedorController {
     } else {
         echo"Ocurrio un error eliminando en proveedor";
     }
-    return $this->index();
+    return $this->listar();
 }
 }

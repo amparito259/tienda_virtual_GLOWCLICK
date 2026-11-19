@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="tienda_virtual_GLOWCLICK/public/css/categoria/crear.css">
 <h1 style="color: #ff0f0f;">Lista de clientes</h1>
 
 <form action="/cliente/guardar" method="POST">

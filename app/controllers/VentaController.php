@@ -4,7 +4,7 @@ require_once __DIR__ . "/../../models/Venta.php";
 
 class VentaController {
 
-    public function index(){
+    public function listar(){
         try {
             $modelVenta = new Venta();
             $ventas = $modelVenta->getAll();
@@ -86,6 +86,6 @@ class VentaController {
     } else {
         echo"Ocurrio un error eliminando en venta";
     }
-    return $this->index();
+    return $this->listar();
 }
 }

@@ -4,7 +4,7 @@ require_once __DIR__ . "/../../models/Usuario.php";
 
 class UsuarioController {
 
-    public function index(){
+    public function listar(){
         try {
             $modelUsuario = new Usuario();
             $usuarios = $modelUsuario->getAll();
@@ -92,6 +92,6 @@ class UsuarioController {
     } else {
         echo"Ocurrio un error eliminando en usuario";
     }
-    return $this->index();
+    return $this->listar();
 }
 }

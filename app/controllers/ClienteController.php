@@ -4,7 +4,7 @@ require_once __DIR__ . "/../../models/Cliente.php";
 
 class ClienteController {
 
-    public function index(){
+    public function listar(){
         try {
             $modelCliente = new Cliente();
             $clientes = $modelCliente->getAll();
@@ -12,6 +12,7 @@ class ClienteController {
             require_once __DIR__ . "/../../views/clientes/index.php";
         } catch (Exception $e) {
             echo "Error en el controlador de cliente: " . $e->getMessage();
+            
         }
     }
 
@@ -70,7 +71,7 @@ class ClienteController {
 
 
 
-    //<-- agregando el metodo eliminar 12/11/2026 -->
+   //<-- agregando el metodo eliminar 12/11/2026 -->
      public function eliminar() {
      $id_cliente = filter_input(INPUT_POST, 'id_cliente', FILTER_VALIDATE_INT);
      echo $id_cliente;
@@ -81,10 +82,9 @@ class ClienteController {
         var_dump($resultado);
        
     } else {
-        echo"Ocurrio un error eliminando en clientes";
+        echo"Ocurrio un error eliminando en cliente";
     }
-    return $this->index();
+    return $this->listar();
 }
 }
-
 
