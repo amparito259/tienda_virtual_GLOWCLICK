@@ -68,4 +68,20 @@ class Cliente {
             return false;
         }
     }
+
+
+    //<-- agregamos el metodo eliminar 12/11/2026 -->
+    public function eliminar($cliente) {
+    try {
+        $sql = "DELETE FROM cliente
+         WHERE id_cliente = :id_cliente";
+        $consulta = $this->connection->prepare($sql);
+        $consulta->bindParam(":id_cliente", $cliente);
+        
+        return $consulta->execute();
+    } catch (PDOException $e) {
+        return "Error al eliminar: " . $e->getMessage();
+    }
 }
+}
+

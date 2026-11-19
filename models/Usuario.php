@@ -79,4 +79,19 @@ class Usuario {
         }
      
     }
+
+
+     //<-- agregamos el metodo eliminar 12/11/2026 -->
+    public function eliminar($usuario) {
+    try {
+        $sql = "DELETE FROM usuario
+         WHERE id_usuario = :id_usuario";
+        $consulta = $this->connection->prepare($sql);
+        $consulta->bindParam(":id_usuario", $usuario);
+        
+        return $consulta->execute();
+    } catch (PDOException $e) {
+        return "Error al eliminar: " . $e->getMessage();
+    }
+}
 }

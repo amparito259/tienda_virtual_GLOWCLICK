@@ -77,4 +77,20 @@ class Venta {
         return false;
     }
 }
+
+
+   //<-- agregamos el metodo eliminar 12/11/2026 -->
+    public function eliminar($venta) {
+    try {
+        $sql = "DELETE FROM ventas
+         WHERE id_venta = :id_venta";
+        $consulta = $this->connection->prepare($sql);
+        $consulta->bindParam(":id_venta", $venta);
+        
+        return $consulta->execute();
+    } catch (PDOException $e) {
+        return "Error al eliminar: " . $e->getMessage();
+    }
+}
+
 }

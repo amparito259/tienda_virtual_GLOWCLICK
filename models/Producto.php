@@ -81,4 +81,19 @@ class Producto {
         }
      
     }
+
+
+    //<-- agregamos el metodo eliminar 12/11/2026 -->
+    public function eliminar($producto) {
+    try {
+        $sql = "DELETE FROM producto
+         WHERE id_producto = :id_producto";
+        $consulta = $this->connection->prepare($sql);
+        $consulta->bindParam(":id_producto", $producto);
+        
+        return $consulta->execute();
+    } catch (PDOException $e) {
+        return "Error al eliminar: " . $e->getMessage();
+    }
+}
 }

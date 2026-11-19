@@ -26,6 +26,11 @@
                 <td><?= htmlspecialchars($usu['estado']) ?></td>
                 <td>
                    <a href="/usuarios/editar?id=<?= htmlspecialchars($usu['id_usuario']); ?>">Editar</a>
+
+                   <form action="/usuarios/eliminar" method="POST" onsubmit="return confirm('Deseas eliminar el usuarios?')">
+                    <input type="hidden" name="id_usuarios" value="<?= $usu['id_usuario'] ?>">
+                    <button type="submit">Eliminar</button>
+                    </form>
                 </td>
             </tr>
             <?php endforeach; ?>

@@ -24,6 +24,12 @@
                 <td>$<?= htmlspecialchars(number_format($ven['total'], 2)) ?></td>
                 <td>
                      <a href="/ventas/editar?id=<?= htmlspecialchars($ven['id_venta']); ?>">Editar</a>
+
+                     <form action="/ventas/eliminar" method="POST" 
+                     onsubmit="return confirm('Deseas eliminar la ventas?')">
+                     <input type="hidden" name="id_ventas" value="<?= $ven['id_venta'] ?>">
+                    <button type="submit">Eliminar</button>
+                     </form>
                 </td>
             </tr>
             <?php endforeach; ?>

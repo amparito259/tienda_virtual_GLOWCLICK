@@ -68,21 +68,28 @@ class CategoriaController
     }
 
 
-    //<-- agregando el metodo eliminar 26/10/2026 -->
-     public function eliminar() {
-     $id_categoria = filter_input(INPUT_POST, 'id_categoria', FILTER_VALIDATE_INT);
-     echo $id_categoria;
+public function eliminar() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id_categoria'];
+            
+            // Usamos una variable local al igual que en index, guardar y editar
+            $modelCategoria = new Categoria();
 
-
-    if ($id_categoria) {
-        $modelo = new Categoria();
-        $resultado=$modelo->eliminar($id_categoria);
-        var_dump($resultado);
-       
-    } else {
-        echo"Ocurrio un error eliminando la categoria";
+            try {
+                $modelCategoria->eliminar($id);
+                header('Location: /categoria?exito=eliminado');
+                exit;
+            } catch (\PDOException $e) {
+                // Código 23000 o 1451 para violación de llave foránea
+                if ($e->getCode() == '23000') {
+                    header('Location: /categoria?error=fk');
+                    exit;
+                } else {
+                    header('Location: /categoria?error=desconocido');
+                    exit;
+                }
+            }
+        }
     }
-    return $this->index();
-}
 
 }

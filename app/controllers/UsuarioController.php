@@ -77,4 +77,21 @@ class UsuarioController {
     $usuario = $modelusuarios->getById($id); 
     require_once __DIR__ . '/../../views/usuarios/editar.php';
     } 
+
+
+       //<-- agregando el metodo eliminar 12/11/2026 -->
+     public function eliminar() {
+     $id_usuario = filter_input(INPUT_POST, 'id_usuario', FILTER_VALIDATE_INT);
+     echo $id_usuario;
+
+    if ($id_usuario) {
+        $modelo = new usuario();
+        $resultado=$modelo->eliminar($id_usuario);
+        var_dump($resultado);
+       
+    } else {
+        echo"Ocurrio un error eliminando en usuario";
+    }
+    return $this->index();
+}
 }

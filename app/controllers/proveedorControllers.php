@@ -70,4 +70,22 @@ class ProveedorController {
     $proveedor = $modelproveedor->getById($id);
     require_once __DIR__ . '/../../views/proveedor/editar.php';
     }
+
+
+    
+       //<-- agregando el metodo eliminar 12/11/2026 -->
+     public function eliminar() {
+     $id_proveedor = filter_input(INPUT_POST, 'id_proveedor', FILTER_VALIDATE_INT);
+     echo $id_proveedor;
+
+    if ($id_proveedor) {
+        $modelo = new proveedor();
+        $resultado=$modelo->eliminar($id_proveedor);
+        var_dump($resultado);
+       
+    } else {
+        echo"Ocurrio un error eliminando en proveedor";
+    }
+    return $this->index();
+}
 }

@@ -76,4 +76,19 @@ class Proveedor {
         }
      
     }
+
+    
+    //<-- agregamos el metodo eliminar 12/11/2026 -->
+    public function eliminar($proveedor) {
+    try {
+        $sql = "DELETE FROM proveedor
+         WHERE id_proveedor = :id_proveedor";
+        $consulta = $this->connection->prepare($sql);
+        $consulta->bindParam(":id_proveedor", $proveedor);
+        
+        return $consulta->execute();
+    } catch (PDOException $e) {
+        return "Error al eliminar: " . $e->getMessage();
+    }
+}
 }

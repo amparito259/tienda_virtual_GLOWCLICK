@@ -1,4 +1,4 @@
-<!-- <button><a href="/categoria" style="color: #be43fb;">Categoria</a></button>
+<button><a href="/categoria" style="color: #be43fb;">Categoria</a></button>
 <button><a href="/cliente" style="color: #be43fb;">Cliente</a></button>
 <button><a href="/producto" style="color: #be43fb;">Producto</a></button>
 <button><a href="/proveedor" style="color: #be43fb;">proveedor</a></button>
@@ -11,31 +11,325 @@
 <button><a href="/producto/crear" style="color: #be43fb;">crearProducto</a></button>
 <button><a href="/proveedor/crear" style="color: #be43fb;">crearProveedor</a></button>
 <button><a href="/usuario/crear" style="color: #be43fb;">crearUsuario</a></button>
-<button><a href="/venta/crear" style="color: #be43fb;">crearVenta</a></button> -->
+<button><a href="/venta/crear" style="color: #be43fb;">crearVenta</a></button>
 
 
 
 <?php
 
-// require_once __DIR__ . "/../app/controllers/CategoriaController.php";
-// require_once __DIR__ . '/../app/controllers/ClienteController.php';
-// require_once __DIR__ . "/../app/controllers/ProductoController.php";
-// require_once __DIR__ . '/../app/controllers/proveedorControllers.php';
-// require_once __DIR__ . "/../app/controllers/UsuarioController.php";
-// require_once __DIR__ . "/../app/controllers/VentaController.php";
+require_once __DIR__ . "/../app/controllers/CategoriaController.php";
+require_once __DIR__ . '/../app/controllers/ClienteController.php';
+require_once __DIR__ . "/../app/controllers/ProductoController.php";
+require_once __DIR__ . '/../app/controllers/proveedorControllers.php';
+require_once __DIR__ . "/../app/controllers/UsuarioController.php";
+require_once __DIR__ . "/../app/controllers/VentaController.php";
 
 
 
-// $method = $_SERVER['REQUEST_METHOD']; 
-// $uri = $_SERVER['REQUEST_URI'];
+$method = $_SERVER['REQUEST_METHOD']; 
+$uri = $_SERVER['REQUEST_URI'];
+$ruta=parse_url($uri, PHP_URL_PATH);
 
-// $ruta=parse_url($uri, PHP_URL_PATH);
 
-// //CATEGORIAS
+
+// CATEGORIA//
+switch ($uri) {
+    case "/categoria":
+    if ($method === "GET"){
+        $Controller = new CategoriaController();
+        $Controller -> index();
+        exit;
+    }
+
+    if ($method === "POST"){
+        $Controller = new CategoriaController();
+        $Controller -> guardar();
+        exit;
+    }
+    break;
+
+    case "/categoria/crear":
+
+    if ($method === "GET"){
+        $Controller = new CategoriaController();
+        $Controller -> crear();
+        exit;
+    }
+     break;
+
+    case "/categoria/editar":
+      if ($method === "GET"){
+        $Controller = new CategoriaController();
+        $Controller -> editar();
+        exit;
+    }
+    break;
+        case "/categoria/actualizar":
+      if ($method === "POST"){
+        $Controller = new CategoriaController();
+        $Controller -> actualizar();
+        exit;
+    }
+    break;
+
+    case "/categoria/eliminar":
+          if ($method === "POST"){
+        $Controller = new CategoriaController();
+        $Controller -> eliminar();
+        exit;
+  
+    }
+     break;
+
+
+     //CLIENTE//
+    case "/Cliente":
+    if ($method === "GET"){
+        $Controller = new ClienteController();
+        $Controller -> index();
+        exit;
+    }
+
+    if ($method === "POST"){
+        $Controller = new ClienteController();
+        $Controller -> guardar();
+        exit;
+    }
+    break;
+
+    case "/Cliente/crear":
+
+    if ($method === "GET"){
+        $Controller = new ClienteController();
+        $Controller -> crear();
+        exit;
+    }
+     break;
+
+    case "/Cliente/editar":
+      if ($method === "GET"){
+        $Controller = new ClienteController();
+        $Controller -> editar();
+        exit;
+    }
+    break;
+        case "/Cliente/actualizar":
+      if ($method === "POST"){
+        $Controller = new ClienteController();
+        $Controller -> actualizar();
+        exit;
+    }
+    break;
+
+    case "/Cliente/eliminar":
+          if ($method === "POST"){
+        $Controller = new ClienteController();
+        $Controller -> eliminar();
+        exit;
+  
+    }
+     break;
+
+     //producto//
+     case "/producto":
+    if ($method === "GET"){
+        $Controller = new productoController();
+        $Controller -> index();
+        exit;
+    }
+
+    if ($method === "POST"){
+        $Controller = new productoController();
+        $Controller -> guardar();
+        exit;
+    }
+    break;
+
+    case "/producto/crear":
+
+    if ($method === "GET"){
+        $Controller = new productoController();
+        $Controller -> crear();
+        exit;
+    }
+     break;
+
+    case "/producto/editar":
+      if ($method === "GET"){
+        $Controller = new productoController();
+        $Controller -> editar();
+        exit;
+    }
+    break;
+        case "/producto/actualizar":
+      if ($method === "POST"){
+        $Controller = new productoController();
+        $Controller -> actualizar();
+        exit;
+    }
+    break;
+
+    case "/producto/eliminar":
+          if ($method === "POST"){
+        $Controller = new productoController();
+        $Controller -> eliminar();
+        exit;
+  
+    }
+     break;
+
+     //proveedor//
+    case "/proveedor":
+    if ($method === "GET"){
+        $Controller = new proveedorController();
+        $Controller -> index();
+        exit;
+    }
+
+    if ($method === "POST"){
+        $Controller = new proveedorController();
+        $Controller -> guardar();
+        exit;
+    }
+    break;
+
+    case "/proveedor/crear":
+
+    if ($method === "GET"){
+        $Controller = new proveedorController();
+        $Controller -> crear();
+        exit;
+    }
+     break;
+
+    case "/proveedor/editar":
+      if ($method === "GET"){
+        $Controller = new proveedorController();
+        $Controller -> editar();
+        exit;
+    }
+    break;
+        case "/proveedor/actualizar":
+      if ($method === "POST"){
+        $Controller = new proveedorController();
+        $Controller -> actualizar();
+        exit;
+    }
+    break;
+
+    case "/proveedor/eliminar":
+          if ($method === "POST"){
+        $Controller = new proveedorController();
+        $Controller -> eliminar();
+        exit;
+  
+    }
+     break;  
+
+     //usuario//
+     case "/usuario":
+    if ($method === "GET"){
+        $Controller = new usuarioController();
+        $Controller -> index();
+        exit;
+    }
+
+    if ($method === "POST"){
+        $Controller = new usuarioController();
+        $Controller -> guardar();
+        exit;
+    }
+    break;
+
+    case "/usuario/crear":
+
+    if ($method === "GET"){
+        $Controller = new usuarioController();
+        $Controller -> crear();
+        exit;
+    }
+     break;
+
+    case "/usuario/editar":
+      if ($method === "GET"){
+        $Controller = new usuarioController();
+        $Controller -> editar();
+        exit;
+    }
+    break;
+        case "/usuario/actualizar":
+      if ($method === "POST"){
+        $Controller = new usuarioController();
+        $Controller -> actualizar();
+        exit;
+    }
+    break;
+
+    case "/usuario/eliminar":
+          if ($method === "POST"){
+        $Controller = new usuarioController();
+        $Controller -> eliminar();
+        exit;
+  
+    }
+     break;
+
+     //venta//
+     case "/venta":
+    if ($method === "GET"){
+        $Controller = new ventaController();
+        $Controller -> index();
+        exit;
+    }
+
+    if ($method === "POST"){
+        $Controller = new ventaController();
+        $Controller -> guardar();
+        exit;
+    }
+    break;
+
+    case "/venta/crear":
+
+    if ($method === "GET"){
+        $Controller = new ventaController();
+        $Controller -> crear();
+        exit;
+    }
+     break;
+
+    case "/venta/editar":
+      if ($method === "GET"){
+        $Controller = new ventaController();
+        $Controller -> editar();
+        exit;
+    }
+    break;
+        case "/venta/actualizar":
+      if ($method === "POST"){
+        $Controller = new ventaController();
+        $Controller -> actualizar();
+        exit;
+    }
+    break;
+
+    case "/venta/eliminar":
+          if ($method === "POST"){
+        $Controller = new ventaController();
+        $Controller -> eliminar();
+        exit;
+  
+    }
+     break;
+}
+
+
+//CATEGORIA//
 // if ($method === 'GET' && $uri === "/categoria"){
 //     $categoriaController = new CategoriaController();
 //     $categoriaController->index();
 // }
+
 // if ($method === 'GET' && $uri === "/categoria/crear"){
 //     $categoriaController = new CategoriaController();
 //     $categoriaController->crear();
@@ -61,7 +355,10 @@
 //     $categoriaController->eliminar();
 // }
 
-// //CLIENTES
+
+
+
+//CLIENTE
 // if ($method === 'GET' && $uri === "/cliente"){
 //     $clienteController = new ClienteController();
 //     $clienteController->index();
@@ -87,7 +384,16 @@
 //     $clienteController->editar();
 // }
 
-// //PRODUCTOS
+// // elinimar cliente 12/11/2026
+// if ($uri === "/cliente/eliminar" && $method === "POST"){
+//     $clienteController = new ClienteController();
+//     $clienteController->eliminar();
+// }
+
+
+
+
+//PRODUCTO
 
 // if ($method === 'GET' && $uri === "/producto"){
 //     $ProductoController = new ProductoController();
@@ -115,8 +421,16 @@
 //     $productoController->editar();
 // }
 
+// // elinimar producto 12/11/2026
+// if ($uri === "/producto/eliminar" && $method === "POST"){
+//     $productoController = new productoController();
+//     $productoController->eliminar();
+// }
 
-// //PROVEEDORES
+
+
+
+//PROVEEDOR
 
 // if ($method === 'GET' && $uri === "/proveedor"){
 //     $ProveedorController = new ProveedorController();
@@ -143,7 +457,16 @@
 //     $proveedorController->editar();
 // }
 
-// //USUARIOS
+// // elinimar proveedor 12/11/2026
+// if ($uri === "/proveedor/eliminar" && $method === "POST"){
+//     $proveedorController = new proveedorController();
+//     $proveedorController->eliminar();
+// }
+
+
+
+
+//USUARIO
 
 // if ($method === 'GET' && $uri === "/usuario"){
 //     $UsuarioController = new UsuarioController();
@@ -170,8 +493,17 @@
 //     $usuarioController->editar();
 // }
 
+// // elinimar usuarios 12/11/2026
+// if ($uri === "/usuarios/eliminar" && $method === "POST"){
+//     $usuariosController = new UsuarioController();
+//     $usuariosController->eliminar();
+// }
 
-// //VENTAS
+
+
+
+
+//VENTA
 
 // if ($method === 'GET' && $uri === "/venta"){
 //     $VentaController = new VentaController();
@@ -198,261 +530,9 @@
 //     $ventasController->editar();
 // }
 
+// // elinimar venta 12/11/2026
+// if ($uri === "/venta/eliminar" && $method === "POST"){
+//     $ventaController = new VentaController();
+//     $ventaController->eliminar();
+// }
 ?>
-
-
-<?php
-
-// 1. Almacenar cinco lenguajes de programación en un arreglo indexado
-$lenguajes = ["PHP", "JavaScript", "Python", "Java", "C++"];
-
-echo "<h3>Ejercicio Práctico 1</h3>";
-// 2. Mostrar el segundo (índice 1), el quinto (índice 4) y el primer lenguaje (índice 0)
-echo "Segundo lenguaje: " . $lenguajes[1] . "<br>";
-echo "Quinto lenguaje: " . $lenguajes[4] . "<br>";
-echo "Primer lenguaje: " . $lenguajes[0] . "<br>";
-
-
-
-
-
-// 1. Almacenar cuatro categorías de productos en un arreglo indexado
-$categorias = ["Labiales", "Polvos", "Rubores", "Sombras"];
-
-echo "<h3>Ejercicio Práctico 2</h3>";
-// 2. Mostrar únicamente la tercera categoría registrada (índice 2)
-echo "Tercera categoría registrada: " . $categorias[2];
-
-
-echo "<h3>Ejercicio Práctico </h3>";
-$frutas = ["Manzana", "Pera", "Mango"];
-echo $frutas[0]; // Muestra: Manzana
-echo "<br>";
-echo $frutas[2]; // Muestra: Mango
-
-
-
-// 1. Representar la información de un aprendiz usando un arreglo asociativo
-$aprendiz = [
-    "nombre" => "Carlos Pérez",
-    "numero_ficha" => "2875123",
-    "programa_formacion" => "Análisis y Desarrollo de Software (ADSO)",
-    "edad" => 22
-];
-
-echo "<h3>Ejercicio Práctico 3</h3>";
-// 2. Mostrar en pantalla el nombre del aprendiz y el programa de formación
-echo "Nombre del aprendiz: " . $aprendiz["nombre"] . "<br>";
-echo "Programa de formación: " . $aprendiz["programa_formacion"] . "<br>";
-
-
-
-
-// 1. Crear un arreglo asociativo que almacene la información de un proveedor
-$proveedor = [
-    "nombre" => "Cosméticos y Más S.A.S.",
-    "ciudad" => "Bogotá D.C.",
-    "telefono" => "3112345678",
-    "correo" => "contacto@cosmeticosymas.com"
-];
-
-echo "<h3>Ejercicio Práctico 4</h3>";
-// 2. Mostrar en pantalla el nombre del proveedor y su ciudad
-echo "Nombre del proveedor: " . $proveedor["nombre"] . "<br>";
-echo "Ciudad: " . $proveedor["ciudad"] . "<br>";
-
-
-
-echo "<h3>Ejercicio Práctico </h3>";
-$producto = [
-    "nombre" => "Mouse",
-    "precio" => 35000,
-    "stock" => 12
-];
-echo $producto["nombre"];
-echo "<br>";
-echo $producto["precio"];
-
-
-
-// 1. Crear un arreglo asociativo con nombre, precio y cantidad disponible
-$productoTienda = [
-    "nombre" => "Base de Maquillaje",
-    "precio" => 45000,
-    "cantidad" => 10
-];
-
-// 2. Modificar el precio, actualizar la cantidad y agregar la categoría
-$productoTienda["precio"] = 42000;          // Modificación de precio
-$productoTienda["cantidad"] = 15;         // Actualización de cantidad
-$productoTienda["categoria"] = "Cosméticos"; // Adición de nueva clave (categoría)
-
-echo "<h3>Ejercicio Práctico 5 - Información Actualizada</h3>";
-echo "Nombre: " . $productoTienda["nombre"] . "<br>";
-echo "Precio: $" . $productoTienda["precio"] . "<br>";
-echo "Cantidad disponible: " . $productoTienda["cantidad"] . "<br>";
-echo "Categoría: " . $productoTienda["categoria"] . "<br>";
-
-
-
-// 1. Crear un arreglo indexado que almacene tres marcas
-$marcas = ["Asus", "HP", "Lenovo"];
-
-// 2. Agregar dos marcas adicionales
-$marcas[] = "Dell";
-$marcas[] = "Acer";
-
-echo "<h3>Ejercicio Práctico 6 - Marcas Registradas</h3>";
-// Mostrar las cinco marcas en pantalla
-echo "Marca 1: " . $marcas[0] . "<br>";
-echo "Marca 2: " . $marcas[1] . "<br>";
-echo "Marca 3: " . $marcas[2] . "<br>";
-echo "Marca 4: " . $marcas[3] . "<br>";
-echo "Marca 5: " . $marcas[4] . "<br>";
-
-
-
-echo "<h3>Ejercicio Práctico </h3>";
-$producto = [
-    "nombre" => "Teclado",
-    "precio" => 60000
-];
-
-$producto["precio"] = 55000; // Modifica el precio existente
-$producto["stock"] = 8;     // Agrega una nueva clave con su valor
-
-echo $producto["nombre"];
-echo "<br>";
-echo $producto["precio"];
-echo "<br>";
-echo $producto["stock"];
-
-
-
-
-// 1. Almacenar tres productos con nombre, precio y cantidad disponible mediante arreglos anidados
-$productosAlmacen = [
-    [
-        "nombre" => "Labial Mate",
-        "precio" => 25000,
-        "cantidad" => 20
-    ],
-    [
-        "nombre" => "Polvo Compacto",
-        "precio" => 32000,
-        "cantidad" => 15
-    ],
-    [
-        "nombre" => "Paleta de Sombras",
-        "precio" => 55000,
-        "cantidad" => 10
-    ]
-];
-
-echo "<h3>Ejercicio Práctico 7</h3>";
-// 2. Mostrar el nombre del segundo producto, el precio del tercero y la cantidad disponible del primero
-echo "Nombre del segundo producto: " . $productosAlmacen[1]["nombre"] . "<br>";
-echo "Precio del tercer producto: $" . $productosAlmacen[2]["precio"] . "<br>";
-echo "Cantidad disponible del primer producto: " . $productosAlmacen[0]["cantidad"] . "<br>";
-
-
-
-// 1. Almacenar la información de tres aprendices (nombre, ficha, programa de formación)
-$aprendices = [
-    [
-        "nombre" => "Ana Gómez",
-        "ficha" => "2875121",
-        "programa" => "Análisis y Desarrollo de Software (ADSO)"
-    ],
-    [
-        "nombre" => "Luis Torres",
-        "ficha" => "2875122",
-        "programa" => "Análisis y Desarrollo de Software (ADSO)"
-    ],
-    [
-        "nombre" => "María Rodríguez",
-        "ficha" => "2875123",
-        "programa" => "Análisis y Desarrollo de Software (ADSO)"
-    ]
-];
-
-echo "<h3>Ejercicio Práctico 8</h3>";
-// 2. Mostrar en pantalla el nombre del tercer aprendiz y la ficha del primero
-echo "Nombre del tercer aprendiz: " . $aprendices[2]["nombre"] . "<br>";
-echo "Ficha del primer aprendiz: " . $aprendices[0]["ficha"] . "<br>";
-
-
-echo "<h3>Ejercicio Práctico </h3>";
-$productos = [
-    [
-        "nombre" => "Mouse",
-        "precio" => 35000
-    ],
-    [
-        "nombre" => "Teclado",
-        "precio" => 60000
-    ]
-];
-
-echo $productos[0]["nombre"]; // Muestra: Mouse
-echo "<br>";
-echo $productos[1]["precio"]; // Muestra: 60000
-
-
-
-// 1. Crear un arreglo asociativo con nombre, edad y un arreglo interno 'contacto'
-$aprendiz = [
-    "nombre" => "Carlos Pérez",
-    "edad" => 21,
-    "contacto" => [
-        "correo" => "carlos.perez@sena.edu.co",
-        "telefono" => "3112345678"
-    ]
-];
-
-echo "<h3>Ejercicio Práctico 9</h3>";
-// 2. Mostrar en pantalla el nombre del aprendiz y su correo electrónico
-echo "Nombre del aprendiz: " . $aprendiz["nombre"] . "<br>";
-echo "Correo electrónico: " . $aprendiz["contacto"]["correo"] . "<br>";
-
-
-
-// 1. Crear un arreglo asociativo de producto con nombre, precio y un arreglo interno de fabricante
-$productoCosmetico = [
-    "nombre" => "Paleta de Sombras",
-    "precio" => 55000,
-    "fabricante" => [
-        "nombre" => "BeautyCorp S.A.S.",
-        "pais" => "Colombia"
-    ]
-];
-
-echo "<h3>Ejercicio Práctico 10</h3>";
-// 2. Mostrar en pantalla el nombre del producto y el país de origen del fabricante
-echo "Nombre del producto: " . $productoCosmetico["nombre"] . "<br>";
-echo "País de origen del fabricante: " . $productoCosmetico["fabricante"]["pais"] . "<br>";
-
-
-
-echo "<h3>Ejercicio Práctico </h3>";
-$producto = [
-    "nombre" => "Monitor",
-    "precio" => 750000,
-    "proveedor" => [
-        "nombre" => "Tecnología SAS",
-        "ciudad" => "Bogotá"
-    ]
-];
-
-echo $producto["nombre"];
-echo "<br>";
-echo $producto["proveedor"]["nombre"];
-echo "<br>";
-echo $producto["proveedor"]["ciudad"];
-
-?>
-
-
-
-
-

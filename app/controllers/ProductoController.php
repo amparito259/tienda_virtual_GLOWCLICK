@@ -75,4 +75,21 @@ class ProductoController {
     require_once __DIR__ . '/../../views/productos/editar.php';
     }
 
+
+
+       //<-- agregando el metodo eliminar 12/11/2026 -->
+     public function eliminar() {
+     $id_producto = filter_input(INPUT_POST, 'id_producto', FILTER_VALIDATE_INT);
+     echo $id_producto;
+
+    if ($id_producto) {
+        $modelo = new producto();
+        $resultado=$modelo->eliminar($id_producto);
+        var_dump($resultado);
+       
+    } else {
+        echo"Ocurrio un error eliminando en producto";
+    }
+    return $this->index();
+}
 }

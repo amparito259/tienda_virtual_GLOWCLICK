@@ -20,6 +20,11 @@
                 <td><?= htmlspecialchars($cli['nombre']) ?></td>
                 <td>
                     <a href="/cliente/editar?id=<?= htmlspecialchars($cli['id_cliente']) ?>">Editar</a>
+
+                     <form action="/cliente/eliminar" method="POST" onsubmit="return confirm('Deseas eliminar el cliente?')">
+                     <input type="hidden" name="id_cliente" value="<?= $cli['id_cliente']  ?>">
+                     <button type="submit">Eliminar</button>
+                     </form>
                 </td>
             </tr>
             

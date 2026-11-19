@@ -28,6 +28,11 @@
                 <td><?= htmlspecialchars($prod['id_proveedor']) ?></td>
                 <td>
                     <a href="/producto/editar?id=<?= htmlspecialchars($prod['id_producto']); ?>">Editar</a>
+
+                    <form action="/producto/eliminar" method="POST" onsubmit="return confirm('Deseas eliminar el producto?')">
+                    <input type="hidden" name="id_producto" value="<?= $prod['id_producto']  ?>">
+                    <button type="submit">Eliminar</button>
+                    </form>
                 </td>
             </tr>
             <?php endforeach; ?>

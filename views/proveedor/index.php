@@ -24,6 +24,10 @@
                 <td><?= htmlspecialchars($prov['direccion']) ?></td>
                 <td>
                   <a href="/proveedor/editar?id=<?= htmlspecialchars($prov['id_proveedor']); ?>">Editar</a>
+
+                   <form action="/proveedor/eliminar" method="POST" onsubmit="return confirm('Deseas eliminar el proveedor?')">
+                    <input type="hidden" name="id_proveedor" value="<?= $prov['id_proveedor']  ?>">
+                    <button type="submit">Eliminar</button>
                 </td>
             </tr>
           

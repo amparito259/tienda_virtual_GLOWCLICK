@@ -71,4 +71,21 @@ class VentaController {
     $ventas = $modelventa->getById($id); 
     require_once __DIR__ . '/../../views/ventas/editar.php';
     }
+
+
+       //<-- agregando el metodo eliminar 12/11/2026 -->
+     public function eliminar() {
+     $id_venta = filter_input(INPUT_POST, 'id_venta', FILTER_VALIDATE_INT);
+     echo $id_venta;
+
+    if ($id_venta) {
+        $modelo = new venta();
+        $resultado=$modelo->eliminar($id_venta);
+        var_dump($resultado);
+       
+    } else {
+        echo"Ocurrio un error eliminando en venta";
+    }
+    return $this->index();
+}
 }

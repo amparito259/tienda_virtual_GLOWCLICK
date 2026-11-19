@@ -20,6 +20,7 @@
                 <td><?= $cat['descripcion'] ?></td>
                 <td>
                     <a href="/categoria/editar?id=<?= htmlspecialchars($cat['id_categoria']) ?>" style="color: #c748fa;" >Editar</a>
+                    
                     <form action="/categoria/eliminar" method="POST" onsubmit="return confirm('Deseas eliminar la categoria?')">
                     <input type="hidden" name="id_categoria" value="<?= $cat['id_categoria']  ?>">
                     <button type="submit">Eliminar</button>
@@ -33,5 +34,11 @@
         <?php endif; ?>
     </table>
     <script src="js/script.js"></script>
+
+    <?php if (isset($_GET['error']) && $_GET['error'] === 'fk'): ?>
+    <script>
+        alert('No se puede eliminar esta categoría porque tiene productos asociados.');
+    </script>
+<?php endif; ?>
 </body>
 </html>

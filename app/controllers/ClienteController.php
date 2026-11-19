@@ -67,4 +67,24 @@ class ClienteController {
     $clientes = $modelCliente->getById($id);
     require_once __DIR__ . '/../../views/clientes/editar.php';
     }
+
+
+
+    //<-- agregando el metodo eliminar 12/11/2026 -->
+     public function eliminar() {
+     $id_cliente = filter_input(INPUT_POST, 'id_cliente', FILTER_VALIDATE_INT);
+     echo $id_cliente;
+
+    if ($id_cliente) {
+        $modelo = new cliente();
+        $resultado=$modelo->eliminar($id_cliente);
+        var_dump($resultado);
+       
+    } else {
+        echo"Ocurrio un error eliminando en clientes";
+    }
+    return $this->index();
 }
+}
+
+
