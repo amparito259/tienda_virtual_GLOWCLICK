@@ -8,12 +8,13 @@ $productos = [
 ];
 echo json_encode($productos);
 $productos[] = ["id" => 4, "nombre" => "paleta de sombras", "precio" => 45000, "stock" =>8, "disponibilidad" => true];
-echo "<pre>" . json_encode($productos, JSON_PRETTY_PRINT) . "</pre>";
+
+echo "<pre>" . json_encode($productos, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) . "</pre>";
 
 
 echo "<br> <br>";
 echo "<br>3. Ejercicio 2. De JSON a PHP <br>";
-$json = file_get_contents(__DIR__ . "/productos.json");
+$json = file_get_contents(__DIR__ . "/productos.json" );
 $productos = json_decode($json, true);
 
 foreach ($productos as $producto) {
@@ -42,7 +43,7 @@ foreach ($productos as &$producto) {
 }
 unset($producto);
 
-echo "<pre>" . json_encode($productos, JSON_PRETTY_PRINT) . "</pre>";
+echo "<pre>" . json_encode($productos, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) . "</pre>";
 
 ?>
 
