@@ -14,6 +14,7 @@ echo "<pre>" . json_encode($productos, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICOD
 
 echo "<br> <br>";
 echo "<br>3. Ejercicio 2. De JSON a PHP <br>";
+echo "<br> <br>";
 $json = file_get_contents(__DIR__ . "/productos.json" );
 $productos = json_decode($json, true);
 
@@ -31,6 +32,7 @@ foreach ($productos as $producto) {
 
 echo "<br> <br>";
 echo "<br>4. Ejercicio 3. Modificar y convertir información <br>";
+echo "<br> <br>";
 
 $json = file_get_contents(__DIR__ . "/productos.json");
 $productos = json_decode($json, true);
@@ -45,7 +47,61 @@ unset($producto);
 
 echo "<pre>" . json_encode($productos, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) . "</pre>";
 
+
+
+
+
+echo "<br> <br>";
+echo "<br>Actividad 2. Ejercicio guiado (index.php) <br>";
+echo "<br> <br>";
+header("Content-Type: application/json; charset=utf-8");
+
+$producto = [
+    "id" => 1,
+    "nombre" => "Mouse",
+    "precio" => 35000
+];
+
+$idBuscado = 1;
+
+if ($idBuscado === $producto["id"]) {
+    http_response_code(200);
+    echo json_encode($producto);
+} else {
+    http_response_code(404);
+    echo json_encode([
+        "mensaje" => "Producto no encontrado"
+    ]);
+}
+
+
+
+echo "<br> <br>";
+echo "<br>Actividad 3. Práctica individual guiada <br>";
+echo "<br> <br>";
+header("Content-Type: application/json; charset=utf-8");
+
+$producto = [
+    "id" => 3,
+    "nombre" => "Monitor",
+    "precio" => 780000,
+    "stock" => 6
+];
+
+$idBuscado = 3; 
+
+if ($idBuscado === $producto["id"]) {
+    http_response_code(200);
+    echo json_encode($producto);
+} else {
+    http_response_code(404);
+    echo json_encode([
+        "mensaje" => "El producto no existe"
+    ]);
+}
+
 ?>
+
 
 
 

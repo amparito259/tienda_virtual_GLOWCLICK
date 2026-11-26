@@ -1,12 +1,15 @@
 <?php
 $rutas=[
     "GET" => [
+          "/" => ['HomeController','index'],
         "/categoria" => ['categoriaController', 'listar'],
         "/clientes" => ['clienteController', 'listar'],
         "/producto" => ['productoController', 'listar'],
         "/proveedor" => ['proveedorController', 'listar'],
         "/usuario" => ['usuarioController', 'listar'],
         "/venta" => ['ventaController', 'listar'],
+
+        "/api/producto" => ['productoController', 'listarjson'],
 
         "/categoria/crear" => ['categoriaController', 'crear'],
         "/clientes/crear" => ['clienteController', 'crear'],

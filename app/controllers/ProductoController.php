@@ -4,6 +4,7 @@ require_once __DIR__ . "/../../models/producto.php";
 
 class ProductoController {
 
+public $producto;
     public function listar(){
         try {
             $modelProducto = new Producto();
@@ -91,5 +92,14 @@ class ProductoController {
         echo"Ocurrio un error eliminando en producto";
     }
     return $this->listar();
+}
+
+
+// 26/11/2026//
+public function listarjson(){
+    header("content-Type: application/json; charset=utf-8");
+    $producto = new producto();
+    $producto = $producto-> getAll();
+    echo json_encode($producto);
 }
 }

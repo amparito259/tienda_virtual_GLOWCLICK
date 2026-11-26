@@ -96,4 +96,10 @@ class Producto {
         return "Error al eliminar: " . $e->getMessage();
     }
 }
+
+// 26/11/2026//
+public function listarjson(){
+    $sql ="SELET * FROM producto";
+    return json_decode($sql);
+}
 }
